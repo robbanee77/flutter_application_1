@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1091768222863",
+    "project_id": "course-reservation-33853",
+    "storage_bucket": "course-reservation-33853.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1091768222863:android:8ba74cab1fccc522581cfa",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1091768222863-f8rjq4dqu5hbob9s75tg98u7k3gblms0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCyUIV2cOuztLVYEPlMKpSGHUSaWmgWowI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1091768222863-f8rjq4dqu5hbob9s75tg98u7k3gblms0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
