@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/notistu.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -17,17 +19,49 @@ class _SearchState extends State<Search> {
       appBar: AppBar(
         title: Row(
           children: [
-            Image.asset(
-              'assets/images/basket.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
+            // Image.asset(
+            //   'assets/images/basket.png',
+            //   width: 30,
+            //   height: 30,
+            //   fit: BoxFit.contain,
+            // ),
             SizedBox(width: 8),
             Text('Course resevation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/noti1.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => notistu()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/histo.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => historystu()),
+              );
+              // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
+              // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
+            },
+          ),
+        ],
       ),
       body: Center(
         child: Padding(

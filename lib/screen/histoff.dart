@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class notioff extends StatefulWidget {
-  const notioff({super.key});
+class histoty extends StatefulWidget {
+  const histoty({super.key});
 
   @override
-  State<notioff> createState() => _notioffState();
+  State<histoty> createState() => _histotyState();
 }
 
-class _notioffState extends State<notioff> {
+class _histotyState extends State<histoty> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,7 +24,7 @@ class _notioffState extends State<notioff> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Notifications')
+            Text('History')
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),

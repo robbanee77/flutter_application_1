@@ -1,3 +1,4 @@
 {
-    "cmake.sourceDirectory": "D:/Web Developer/reservation/flutter_application_1/linux/flutter"
+    "cmake.sourceDirectory": "D:/Web Developer/reservation/flutter_application_1/linux/flutter",
+    "java.configuration.updateBuildConfiguration": "interactive"
 }

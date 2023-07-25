@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/notistu.dart';
 import 'Search.dart';
 import 'status.dart';
 
@@ -29,6 +31,38 @@ class _STPageState extends State<STPage> {
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/noti1.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => notistu()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/histo.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => historystu()),
+              );
+              // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
+              // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
+            },
+          ),
+        ],
       ),
       body: Column(
         children: [

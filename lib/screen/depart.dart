@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/ds.dart';
-import 'package:flutter_application_1/screen/histo.dart';
+import 'package:flutter_application_1/screen/histoff.dart';
 import 'package:flutter_application_1/screen/it.dart';
 import 'package:flutter_application_1/screen/notioff.dart';
 import 'package:flutter_application_1/screen/rd.dart';

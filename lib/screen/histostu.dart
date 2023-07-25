@@ -2,17 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class histoty extends StatefulWidget {
-  const histoty({super.key});
+class historystu extends StatefulWidget {
+  const historystu({super.key});
 
   @override
-  State<histoty> createState() => _histotyState();
+  State<historystu> createState() => _historystuState();
 }
 
-class _histotyState extends State<histoty> {
+class _historystuState extends State<historystu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
         title: Row(
           children: [

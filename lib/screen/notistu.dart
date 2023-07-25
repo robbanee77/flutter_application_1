@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-class notioff extends StatefulWidget {
-  const notioff({super.key});
+class notistu extends StatefulWidget {
+  const notistu({super.key});
 
   @override
-  State<notioff> createState() => _notioffState();
+  State<notistu> createState() => _notistuState();
 }
 
-class _notioffState extends State<notioff> {
+class _notistuState extends State<notistu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
