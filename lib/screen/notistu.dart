@@ -17,14 +17,14 @@ class _notistuState extends State<notistu> {
       appBar: AppBar(
         title: Row(
           children: [
+            SizedBox(width: 8),
+            Text('Notifications  '),
             Image.asset(
-              'assets/images/basket.png',
+              'assets/images/noti1.png',
               width: 30,
               height: 30,
               fit: BoxFit.contain,
             ),
-            SizedBox(width: 8),
-            Text('Notifications')
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -48,7 +48,7 @@ class _notistuState extends State<notistu> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -67,7 +67,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFFed6a5a),
+                        color: Color(0xFF5ca4a9),
                       ),
                     ),
                     TextSpan(
@@ -81,7 +81,7 @@ class _notistuState extends State<notistu> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -100,7 +100,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFFed6a5a),
+                        color: Color(0xFF5ca4a9),
                       ),
                     ),
                     TextSpan(
@@ -114,7 +114,7 @@ class _notistuState extends State<notistu> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -133,7 +133,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFFed6a5a),
+                        color: Color(0xFF5ca4a9),
                       ),
                     ),
                     TextSpan(
@@ -147,7 +147,7 @@ class _notistuState extends State<notistu> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -166,7 +166,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFFed6a5a),
+                        color: Color(0xFF5ca4a9),
                       ),
                     ),
                     TextSpan(
@@ -180,7 +180,7 @@ class _notistuState extends State<notistu> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             // Container(
