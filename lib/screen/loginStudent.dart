@@ -70,7 +70,7 @@ class _LoginPageState extends State<LoginPageState> {
               TextField(
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  labelText: 'Username',
+                  labelText: 'ID Student',
                   labelStyle: TextStyle(
                       color: Color(0xFF5ca4a9)), // กำหนดสีให้กับ label
                   border: OutlineInputBorder(
