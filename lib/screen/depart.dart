@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/ds.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
@@ -13,6 +14,7 @@ class Depart extends StatefulWidget {
 }
 
 class _DepartState extends State<Depart> {
+  final auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
