@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'STDPage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 void main() {
   runApp(LoginApp());
@@ -68,9 +69,10 @@ class _LoginPageState extends State<LoginPageState> {
               ),
               SizedBox(height: 20.0),
               TextField(
+                // keyboardType: TextInputType.emailAddress,
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  labelText: 'ID Student',
+                  hintText: 'Student e-mail ',
                   labelStyle: TextStyle(
                       color: Color(0xFF5ca4a9)), // กำหนดสีให้กับ label
                   border: OutlineInputBorder(
@@ -84,9 +86,10 @@ class _LoginPageState extends State<LoginPageState> {
               ),
               SizedBox(height: 20.0),
               TextField(
+                // obscureText: true,
                 controller: _passwordController,
                 decoration: InputDecoration(
-                  labelText: 'Password',
+                  hintText: 'Password',
                   labelStyle: TextStyle(
                       color: Color(0xFF5ca4a9)), // กำหนดสีให้กับ label
                   border: OutlineInputBorder(
@@ -104,20 +107,46 @@ class _LoginPageState extends State<LoginPageState> {
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
                   ElevatedButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => STPage()),
-                      );
-                      String username = _usernameController.text;
-                      String password = _passwordController.text;
+                    onPressed: () async {
+                      try {
+                        UserCredential userCredential = await FirebaseAuth
+                            .instance
+                            .signInWithEmailAndPassword(
+                          email: _usernameController.text,
+                          password: _passwordController.text,
+                        );
 
-                      // Perform login logic here
-                      // You can validate the username and password against your authentication system
+                        // ล็อกอินสำเร็จ สามารถดำเนินการต่อไปได้
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => STPage()),
+                        );
+                      } catch (e) {
+                        // เกิดข้อผิดพลาดในการล็อกอิน
+                        print('Error logging in: $e');
 
-                      // For demonstration purposes, let's print the entered username and password
-                      print('Username: $username');
-                      print('Password: $password');
+                        // เช็คว่า error code เป็น 'wrong-password' (อีเมลไม่ถูกต้อง)
+                        if (e.hashCode == 'wrong-password') {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Login Error'),
+                                content:
+                                    Text('Email or password is incorrect.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        }
+                      }
                     },
                     child: Text('Login'),
                     style: ElevatedButton.styleFrom(

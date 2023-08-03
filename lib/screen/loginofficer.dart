@@ -74,7 +74,7 @@ class _officerState extends State<officerState> {
                 // keyboardType: TextInputType.emailAddress,
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  hintText: 'E-mail ',
+                  hintText: 'Officer e-mail ',
                   labelStyle: TextStyle(
                       color: Color(0xFF5ca4a9)), // กำหนดสีให้กับ label
                   border: OutlineInputBorder(
