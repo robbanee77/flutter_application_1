@@ -35,7 +35,7 @@ class _notioffState extends State<notioff> {
               padding:
                   EdgeInsets.only(top: 45, bottom: 18, left: 20, right: 20),
               child: Text(
-                'Notification',
+                'Notifications',
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,
