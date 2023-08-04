@@ -52,13 +52,13 @@ class homescreen extends StatelessWidget {
                       }));
                     },
                     icon: Image.asset(
-                      'assets/images/ceo.png',
+                      'assets/images/login3.png',
                       width: 80,
                       height: 80,
                     ),
                     label: Text(
-                      "Officer",
-                      style: TextStyle(fontSize: 20),
+                      " Login",
+                      style: TextStyle(fontSize: 25),
                     ),
                     style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -71,36 +71,36 @@ class homescreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                FractionallySizedBox(
-                  widthFactor: 0.7,
-                  child: ElevatedButton.icon(
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) {
-                        return LoginPageState();
-                      }));
-                    },
-                    icon: Image.asset(
-                      'assets/images/student.png',
-                      width: 80,
-                      height: 80,
-                    ),
-                    label: Text(
-                      "Student",
-                      style: TextStyle(fontSize: 20),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      padding: EdgeInsets.all(20),
-                      elevation: 8,
-                      shadowColor: Colors.grey,
-                      primary: Color(0xFF5ca4a9),
-                    ),
-                  ),
-                ),
+                // SizedBox(height: 20),
+                // FractionallySizedBox(
+                //   widthFactor: 0.7,
+                //   child: ElevatedButton.icon(
+                //     onPressed: () {
+                //       Navigator.push(context,
+                //           MaterialPageRoute(builder: (context) {
+                //         return LoginPageState();
+                //       }));
+                //     },
+                //     icon: Image.asset(
+                //       'assets/images/student.png',
+                //       width: 80,
+                //       height: 80,
+                //     ),
+                //     label: Text(
+                //       "Student",
+                //       style: TextStyle(fontSize: 20),
+                //     ),
+                //     style: ElevatedButton.styleFrom(
+                //       shape: RoundedRectangleBorder(
+                //         borderRadius: BorderRadius.circular(10),
+                //       ),
+                //       padding: EdgeInsets.all(20),
+                //       elevation: 8,
+                //       shadowColor: Colors.grey,
+                //       primary: Color(0xFF5ca4a9),
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),

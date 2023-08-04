@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'depart.dart';
+import 'STDPage.dart';
 
 void main() {
   runApp(LoginApp());
@@ -27,8 +28,6 @@ class officerState extends StatefulWidget {
 class _officerState extends State<officerState> {
   TextEditingController _usernameController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  // late String _email, _password;
-  // final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +43,7 @@ class _officerState extends State<officerState> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course resevation'),
+            Text('Course reservation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -56,27 +55,24 @@ class _officerState extends State<officerState> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               Image.asset(
-                "assets/images/ceo2.png",
+                "assets/images/login1.png",
                 width: 130,
                 height: 130,
               ),
-              Text(
-                'Officer Login',
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
-                  color: Color(
-                      0xFF5ca4a9), // กำหนดสีให้กับตัวหนังสือ 'Officer Login'
-                ),
-              ),
+              // Text(
+              //   'Officer Login',
+              //   style: TextStyle(
+              //     fontSize: 24.0,
+              //     fontWeight: FontWeight.bold,
+              //     color: Color(0xFF5ca4a9),
+              //   ),
+              // ),
               SizedBox(height: 20.0),
               TextField(
-                // keyboardType: TextInputType.emailAddress,
                 controller: _usernameController,
                 decoration: InputDecoration(
-                  hintText: 'Officer e-mail ',
-                  labelStyle: TextStyle(
-                      color: Color(0xFF5ca4a9)), // กำหนดสีให้กับ label
+                  hintText: 'E-mail ',
+                  labelStyle: TextStyle(color: Color(0xFF5ca4a9)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -88,12 +84,10 @@ class _officerState extends State<officerState> {
               ),
               SizedBox(height: 20.0),
               TextField(
-                // obscureText: true,
                 controller: _passwordController,
                 decoration: InputDecoration(
                   hintText: 'Password',
-                  labelStyle: TextStyle(
-                      color: Color(0xFF5ca4a9)), // กำหนดสีให้กับ label
+                  labelStyle: TextStyle(color: Color(0xFF5ca4a9)),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                   ),
@@ -111,24 +105,54 @@ class _officerState extends State<officerState> {
                   ElevatedButton(
                     onPressed: () async {
                       try {
-                        UserCredential userCredential = await FirebaseAuth
-                            .instance
-                            .signInWithEmailAndPassword(
-                          email: _usernameController.text,
-                          password: _passwordController.text,
-                        );
+                        if (!_usernameController.text.contains('@')) {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Input Error'),
+                                content: Text('Please enter a valid email.'),
+                                actions: [
+                                  TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: Text('OK'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        } else {
+                          UserCredential userCredential = await FirebaseAuth
+                              .instance
+                              .signInWithEmailAndPassword(
+                            email: _usernameController.text,
+                            password: _passwordController.text,
+                          );
 
-                        // ล็อกอินสำเร็จ สามารถดำเนินการต่อไปได้
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Depart()),
-                        );
+                          if (userCredential.user != null) {
+                            User? user = userCredential.user;
+
+                            if (user?.email == 'fst4959@gmail.com') {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Depart()),
+                              );
+                            } else {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => STPage()),
+                              );
+                            }
+                          }
+                        }
                       } catch (e) {
-                        // เกิดข้อผิดพลาดในการล็อกอิน
                         print('Error logging in: $e');
 
-                        // เช็คว่า error code เป็น 'wrong-password' (อีเมลไม่ถูกต้อง)
-                        if (e.hashCode == 'wrong-password') {
+                        if (e.toString().contains('user-not-found')) {
                           showDialog(
                             context: context,
                             builder: (BuildContext context) {
