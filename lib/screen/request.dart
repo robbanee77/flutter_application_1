@@ -56,6 +56,16 @@ class _requestState extends State<request> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                SizedBox(height: 40),
+                Text(
+                  " Name Of Subject",
+                  style: TextStyle(
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5ca4a9),
+                  ),
+                ),
+                SizedBox(height: 20),
                 Container(
                   width: 300,
                   height: 300,
