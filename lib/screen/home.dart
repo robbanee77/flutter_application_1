@@ -12,7 +12,7 @@ class homescreen extends StatelessWidget {
         title: Row(
           children: [
             Image.asset(
-              'assets/images/basket.png',
+              'assets/images/pro1.png',
               width: 30,
               height: 30,
               fit: BoxFit
@@ -52,12 +52,12 @@ class homescreen extends StatelessWidget {
                       }));
                     },
                     icon: Image.asset(
-                      'assets/images/login3.png',
-                      width: 80,
-                      height: 80,
+                      'assets/images/basket2.png',
+                      width: 70,
+                      height: 70,
                     ),
                     label: Text(
-                      " Login",
+                      "Course reservetion.",
                       style: TextStyle(fontSize: 25),
                     ),
                     style: ElevatedButton.styleFrom(

@@ -22,12 +22,12 @@ class _DepartState extends State<Depart> {
       appBar: AppBar(
         title: Row(
           children: [
-            //Image.asset(
-            // 'assets/images/basket.png',
-            // width: 30,
-            // height: 30,
-            // fit: BoxFit.contain,
-            //),
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
             SizedBox(width: 8),
             Text('Course reservation')
           ],
@@ -68,96 +68,143 @@ class _DepartState extends State<Depart> {
           ),
         ],
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: EdgeInsets.only(top: 60, left: 16, right: 16, bottom: 70),
-            child: Column(
-              children: [
-                Image.asset(
-                  'assets/images/csc.png',
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.contain,
-                ),
-                SizedBox(height: 16),
-                Text(
-                  "Faculty of science and technology",
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF5ca4a9),
+      body: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20.0),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding:
+                  EdgeInsets.only(top: 60, left: 16, right: 16, bottom: 70),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
+                      shape: BoxShape.circle,
+                    ),
+                    child: Image.asset(
+                      'assets/images/csc.png',
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.contain,
+                    ),
                   ),
-                ),
-              ],
+                  SizedBox(height: 16),
+                  Text(
+                    "FACULTY OF SCIENCE AND TENOLOGY",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(height: 16),
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.symmetric(horizontal: 32),
-              children: [
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => it()),
-                    );
-                    // Handle button 1 press
-                  },
-                  child: Text("Information technology"),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(20),
-                    shape: RoundedRectangleBorder(
+            SizedBox(height: 16),
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.symmetric(horizontal: 32),
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    primary: Color(0xFF5ca4a9), // เปลี่ยนสีปุ่ม
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => it()),
+                        );
+                        // Handle button 1 press
+                      },
+                      child: Text("Information technology"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(20),
+                        primary: Color(0xFF5ca4a9),
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => ds()),
-                    );
-                    // Handle button 2 press
-                  },
-                  child: Text("Information science and analysis"),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(20),
-                    shape: RoundedRectangleBorder(
+                  SizedBox(height: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    primary: Color(0xFF5ca4a9), // เปลี่ยนสีปุ่ม
-                    shadowColor: Colors.grey,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ds()),
+                        );
+                        // Handle button 2 press
+                      },
+                      child: Text("Information science and analysis"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(20),
+                        primary: Color(0xFF5ca4a9),
+                      ),
+                    ),
                   ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => rd()),
-                    );
-                    // Handle button 3 press
-                  },
-                  child: Text("Halal product research development"),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.all(20),
-                    shape: RoundedRectangleBorder(
+                  SizedBox(height: 20),
+                  Container(
+                    decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.5),
+                          spreadRadius: 3,
+                          blurRadius: 5,
+                          offset: Offset(0, 3),
+                        ),
+                      ],
                       borderRadius: BorderRadius.circular(16.0),
                     ),
-                    primary: Color(0xFF5ca4a9), // เปลี่ยนสีปุ่ม
-                    shadowColor: Colors.grey,
+                    child: ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => rd()),
+                        );
+                        // Handle button 3 press
+                      },
+                      child: Text("Halal product research development"),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.all(20),
+                        primary: Color(0xFF5ca4a9),
+                      ),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

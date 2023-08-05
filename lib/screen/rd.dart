@@ -19,12 +19,12 @@ class _rdState extends State<rd> {
       appBar: AppBar(
         title: Row(
           children: [
-            //Image.asset(
-            //'assets/images/basket.png',
-            //width: 30,
-            // height: 30,
-            //fit: BoxFit.contain,
-            //),
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
             SizedBox(width: 8),
             Text('Course resevetion'),
           ],
@@ -73,17 +73,30 @@ class _rdState extends State<rd> {
             padding: EdgeInsets.only(top: 60, left: 16, right: 16, bottom: 50),
             child: Column(
               children: [
-                Image.asset(
-                  'assets/images/rd.png',
-                  width: 100,
-                  height: 100,
-                  fit: BoxFit.contain,
+                Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.5),
+                        spreadRadius: 3,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                    shape: BoxShape.circle,
+                  ),
+                  child: Image.asset(
+                    'assets/images/rd.png',
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.contain,
+                  ),
                 ),
-                SizedBox(height: 16),
+                SizedBox(height: 20),
                 Text(
-                  "Halal product research development",
+                  "HALAL PRODUCT RESEARCH DEVELOPMENT",
                   style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 17,
                     fontWeight: FontWeight.bold,
                     color: Color(0xFF5ca4a9),
                   ),
@@ -91,7 +104,7 @@ class _rdState extends State<rd> {
               ],
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 5),
           Expanded(
             child: ListView(
               padding: EdgeInsets.symmetric(horizontal: 32),

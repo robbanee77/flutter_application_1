@@ -16,13 +16,14 @@ class _notioffState extends State<notioff> {
         title: Row(
           children: [
             SizedBox(width: 8),
-            Text('Notifications '),
             Image.asset(
-              'assets/images/noti1.png',
+              'assets/images/pro.png',
               width: 30,
               height: 30,
               fit: BoxFit.contain,
             ),
+            SizedBox(width: 8),
+            Text('Notifications '),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),

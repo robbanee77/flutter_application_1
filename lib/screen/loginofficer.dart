@@ -37,7 +37,7 @@ class _officerState extends State<officerState> {
         title: Row(
           children: [
             Image.asset(
-              'assets/images/basket.png',
+              'assets/images/pro.png',
               width: 30,
               height: 30,
               fit: BoxFit.contain,
@@ -48,145 +48,149 @@ class _officerState extends State<officerState> {
         ),
         backgroundColor: Color(0xFF5ca4a9),
       ),
-      body: Center(
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Image.asset(
-                "assets/images/login1.png",
-                width: 130,
-                height: 130,
-              ),
-              // Text(
-              //   'Officer Login',
-              //   style: TextStyle(
-              //     fontSize: 24.0,
-              //     fontWeight: FontWeight.bold,
-              //     color: Color(0xFF5ca4a9),
-              //   ),
-              // ),
-              SizedBox(height: 20.0),
-              TextField(
-                controller: _usernameController,
-                decoration: InputDecoration(
-                  hintText: 'E-mail ',
-                  labelStyle: TextStyle(color: Color(0xFF5ca4a9)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF5ca4a9)),
-                    borderRadius: BorderRadius.circular(10.0),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SizedBox(height: 60),
+                Image.asset(
+                  "assets/images/user.png",
+                  width: 130,
+                  height: 130,
+                ),
+                SizedBox(height: 10.0),
+                Text(
+                  'LOGIN',
+                  style: TextStyle(
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5ca4a9),
                   ),
                 ),
-              ),
-              SizedBox(height: 20.0),
-              TextField(
-                controller: _passwordController,
-                decoration: InputDecoration(
-                  hintText: 'Password',
-                  labelStyle: TextStyle(color: Color(0xFF5ca4a9)),
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(color: Color(0xFF5ca4a9)),
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                ),
-                obscureText: true,
-              ),
-              SizedBox(height: 20.0),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  ElevatedButton(
-                    onPressed: () async {
-                      try {
-                        if (!_usernameController.text.contains('@')) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Input Error'),
-                                content: Text('Please enter a valid email.'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        } else {
-                          UserCredential userCredential = await FirebaseAuth
-                              .instance
-                              .signInWithEmailAndPassword(
-                            email: _usernameController.text,
-                            password: _passwordController.text,
-                          );
-
-                          if (userCredential.user != null) {
-                            User? user = userCredential.user;
-
-                            if (user?.email == 'fst4959@gmail.com') {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Depart()),
-                              );
-                            } else {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => STPage()),
-                              );
-                            }
-                          }
-                        }
-                      } catch (e) {
-                        print('Error logging in: $e');
-
-                        if (e.toString().contains('user-not-found')) {
-                          showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return AlertDialog(
-                                title: Text('Login Error'),
-                                content:
-                                    Text('Email or password is incorrect.'),
-                                actions: [
-                                  TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('OK'),
-                                  ),
-                                ],
-                              );
-                            },
-                          );
-                        }
-                      }
-                    },
-                    child: Text('Login'),
-                    style: ElevatedButton.styleFrom(
-                      elevation: 8,
-                      shadowColor: Colors.grey,
-                      primary: Color(0xFF5ca4a9),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
+                SizedBox(height: 20.0),
+                TextField(
+                  controller: _usernameController,
+                  decoration: InputDecoration(
+                    hintText: 'E-mail ',
+                    labelStyle: TextStyle(color: Color(0xFF5ca4a9)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF5ca4a9)),
+                      borderRadius: BorderRadius.circular(10.0),
                     ),
                   ),
-                ],
-              ),
-            ],
+                ),
+                SizedBox(height: 20.0),
+                TextField(
+                  controller: _passwordController,
+                  decoration: InputDecoration(
+                    hintText: 'Password',
+                    labelStyle: TextStyle(color: Color(0xFF5ca4a9)),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Color(0xFF5ca4a9)),
+                      borderRadius: BorderRadius.circular(10.0),
+                    ),
+                  ),
+                  obscureText: true,
+                ),
+                SizedBox(height: 20.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () async {
+                        try {
+                          if (!_usernameController.text.contains('@')) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Input Error'),
+                                  content: Text('Please enter a valid email.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          } else {
+                            UserCredential userCredential = await FirebaseAuth
+                                .instance
+                                .signInWithEmailAndPassword(
+                              email: _usernameController.text,
+                              password: _passwordController.text,
+                            );
+
+                            if (userCredential.user != null) {
+                              User? user = userCredential.user;
+
+                              if (user?.email == 'fst4959@gmail.com') {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Depart()),
+                                );
+                              } else {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => STPage()),
+                                );
+                              }
+                            }
+                          }
+                        } catch (e) {
+                          print('Error logging in: $e');
+
+                          if (e.toString().contains('user-not-found')) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return AlertDialog(
+                                  title: Text('Login Error'),
+                                  content:
+                                      Text('Email or password is incorrect.'),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                      child: Text('OK'),
+                                    ),
+                                  ],
+                                );
+                              },
+                            );
+                          }
+                        }
+                      },
+                      child: Text('Login'),
+                      style: ElevatedButton.styleFrom(
+                        elevation: 8,
+                        shadowColor: Colors.grey,
+                        primary: Color(0xFF5ca4a9),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

@@ -16,7 +16,16 @@ class _requestState extends State<request> {
       backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
         title: Row(
-          children: [SizedBox(width: 8), Text('Course reservation')],
+          children: [
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text('Course reservation')
+          ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
         actions: [
@@ -58,7 +67,7 @@ class _requestState extends State<request> {
               children: [
                 SizedBox(height: 40),
                 Text(
-                  " Name Of Subject",
+                  " ' Name Of Subject '  ",
                   style: TextStyle(
                     fontSize: 24,
                     fontWeight: FontWeight.bold,
@@ -72,8 +81,6 @@ class _requestState extends State<request> {
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Color(0xFF5ca4a9),
-                    border: Border.all(
-                        color: Color.fromARGB(255, 255, 255, 255), width: 2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
@@ -143,8 +150,6 @@ class _requestState extends State<request> {
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Color(0xFF5ca4a9),
-                    border: Border.all(
-                        color: Color.fromARGB(255, 255, 255, 255), width: 2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
@@ -214,8 +219,6 @@ class _requestState extends State<request> {
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Color(0xFF5ca4a9),
-                    border: Border.all(
-                        color: Color.fromARGB(255, 255, 255, 255), width: 2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
@@ -285,8 +288,6 @@ class _requestState extends State<request> {
                   padding: EdgeInsets.all(16),
                   decoration: BoxDecoration(
                     color: Color(0xFF5ca4a9),
-                    border: Border.all(
-                        color: Color.fromARGB(255, 255, 255, 255), width: 2),
                     borderRadius: BorderRadius.circular(25),
                   ),
                   child: Column(
