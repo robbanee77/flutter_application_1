@@ -17,14 +17,14 @@ class _notistuState extends State<notistu> {
       appBar: AppBar(
         title: Row(
           children: [
-            SizedBox(width: 8),
-            Text('Notifications  '),
             Image.asset(
-              'assets/images/noti1.png',
+              'assets/images/pro.png',
               width: 30,
               height: 30,
               fit: BoxFit.contain,
             ),
+            SizedBox(width: 8),
+            Text('Notifications'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -37,7 +37,7 @@ class _notistuState extends State<notistu> {
               padding:
                   EdgeInsets.only(top: 45, bottom: 18, left: 20, right: 20),
               child: Text(
-                'Notification',
+                'Notifications',
                 style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.bold,

@@ -20,12 +20,12 @@ class _STPageState extends State<STPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            //Image.asset(
-            //'assets/images/basket.png',
-            // width: 30,
-            //height: 30,
-            //fit: BoxFit.contain,
-            //),
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
             SizedBox(width: 8),
             Text('Course resevation'),
           ],
