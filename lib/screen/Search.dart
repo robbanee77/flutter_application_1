@@ -133,7 +133,7 @@ class _SearchState extends State<Search> {
                           print('Search Term: $searchTerm');
                         },
                         icon: Icon(Icons.send),
-                        color: Color(0xFF5ca4a9),
+                        color: Color(0xFFed6a5a),
                       ),
                     ],
                   ),
