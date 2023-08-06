@@ -55,7 +55,7 @@ class _officerState extends State<officerState> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                SizedBox(height: 60),
+                SizedBox(height: 80),
                 Image.asset(
                   "assets/images/user.png",
                   width: 130,

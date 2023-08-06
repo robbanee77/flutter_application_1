@@ -70,7 +70,7 @@ class _SearchState extends State<Search> {
             children: [
               SizedBox(height: 150.0), // ปรับความสูงได้ตามต้องการ
               Image.asset(
-                "assets/images/search2.png",
+                "assets/images/search3.png",
                 width: 150,
                 height: 150,
               ),
@@ -89,7 +89,7 @@ class _SearchState extends State<Search> {
                 style: TextStyle(
                   fontSize: 15.0,
                   fontWeight: FontWeight.bold,
-                  color: Color(0xFF5ca4a9),
+                  color: Color(0xFFed6a5a),
                 ),
               ),
               SizedBox(height: 25.0), // ปรับความสูงได้ตามต้องการ
