@@ -70,37 +70,37 @@ class _rdState extends State<rd> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Padding(
-            padding: EdgeInsets.only(top: 60, left: 16, right: 16, bottom: 50),
+            padding: EdgeInsets.only(top: 10, left: 16, right: 16, bottom: 5),
             child: Column(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.5),
-                        spreadRadius: 3,
-                        blurRadius: 5,
-                        offset: Offset(0, 3),
-                      ),
-                    ],
-                    shape: BoxShape.circle,
-                  ),
+                  // decoration: BoxDecoration(
+                  //   boxShadow: [
+                  //     BoxShadow(
+                  //       color: Colors.grey.withOpacity(0.5),
+                  //       spreadRadius: 3,
+                  //       blurRadius: 5,
+                  //       offset: Offset(0, 3),
+                  //     ),
+                  //   ],
+                  //   shape: BoxShape.circle,
+                  // ),
                   child: Image.asset(
-                    'assets/images/rd.png',
-                    width: 100,
-                    height: 100,
+                    'assets/images/rd1.png',
+                    width: 280,
+                    height: 170,
                     fit: BoxFit.contain,
                   ),
                 ),
-                SizedBox(height: 20),
-                Text(
-                  "HALAL PRODUCT RESEARCH DEVELOPMENT",
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF5ca4a9),
-                  ),
-                ),
+                // SizedBox(height: 20),
+                // Text(
+                //   "HALAL PRODUCT RESEARCH DEVELOPMENT",
+                //   style: TextStyle(
+                //     fontSize: 17,
+                //     fontWeight: FontWeight.bold,
+                //     color: Color(0xFF5ca4a9),
+                //   ),
+                // ),
               ],
             ),
           ),

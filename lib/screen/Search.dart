@@ -68,17 +68,26 @@ class _SearchState extends State<Search> {
           padding: EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
-              SizedBox(height: 0.0), // ปรับความสูงได้ตามต้องการ
+              SizedBox(height: 150.0), // ปรับความสูงได้ตามต้องการ
               Image.asset(
-                "assets/images/logo.png",
-                width: 250,
-                height: 250,
+                "assets/images/search2.png",
+                width: 150,
+                height: 150,
               ),
-              SizedBox(height: 40.0), // ปรับความสูงได้ตามต้องการ
+              SizedBox(height: 0.0), // ปรับความสูงได้ตามต้องการ
               Text(
-                "Search code of subject",
+                "CODE OF SUBJECTS",
                 style: TextStyle(
                   fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF5ca4a9),
+                ),
+              ),
+              SizedBox(height: 0.0), // ปรับความสูงได้ตามต้องการ
+              Text(
+                "( Ex: GE2100-101 )",
+                style: TextStyle(
+                  fontSize: 15.0,
                   fontWeight: FontWeight.bold,
                   color: Color(0xFF5ca4a9),
                 ),

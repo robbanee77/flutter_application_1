@@ -35,15 +35,26 @@ class _notistuState extends State<notistu> {
           children: [
             Container(
               padding:
-                  EdgeInsets.only(top: 45, bottom: 18, left: 20, right: 20),
-              child: Text(
-                'Notifications',
-                style: TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF5ca4a9),
-                ),
-                textAlign: TextAlign.center,
+                  EdgeInsets.only(top: 45, left: 20, right: 20, bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Notifications',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(width: 10), // กำหนดระยะห่างระหว่างข้อความกับรูปภาพ
+                  Image.asset(
+                    'assets/images/noti4.png', // ตำแหน่งของไฟล์รูปภาพที่คุณต้องการใช้
+                    width: 30, // ปรับขนาดรูปภาพตามที่คุณต้องการ
+                    height: 30,
+                  ),
+                ],
               ),
             ),
             Container(
@@ -67,7 +78,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFF5ca4a9),
+                        color: Color(0xFFed6a5a),
                       ),
                     ),
                     TextSpan(
@@ -100,7 +111,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFF5ca4a9),
+                        color: Color(0xFFed6a5a),
                       ),
                     ),
                     TextSpan(
@@ -133,7 +144,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFF5ca4a9),
+                        color: Color(0xFFed6a5a),
                       ),
                     ),
                     TextSpan(
@@ -166,7 +177,7 @@ class _notistuState extends State<notistu> {
                       style: TextStyle(
                         fontSize:
                             20, // Adjust the font size for "There is" here
-                        color: Color(0xFF5ca4a9),
+                        color: Color(0xFFed6a5a),
                       ),
                     ),
                     TextSpan(

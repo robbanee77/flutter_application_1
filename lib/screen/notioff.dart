@@ -34,20 +34,31 @@ class _notioffState extends State<notioff> {
           children: [
             Container(
               padding:
-                  EdgeInsets.only(top: 45, bottom: 18, left: 20, right: 20),
-              child: Text(
-                'Notifications',
-                style: TextStyle(
-                  fontSize: 35,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF5ca4a9),
-                ),
-                textAlign: TextAlign.center,
+                  EdgeInsets.only(top: 45, left: 20, right: 20, bottom: 20),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'Notifications',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(width: 10), // กำหนดระยะห่างระหว่างข้อความกับรูปภาพ
+                  Image.asset(
+                    'assets/images/noti4.png', // ตำแหน่งของไฟล์รูปภาพที่คุณต้องการใช้
+                    width: 40, // ปรับขนาดรูปภาพตามที่คุณต้องการ
+                    height: 40,
+                  ),
+                ],
               ),
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -80,7 +91,7 @@ class _notioffState extends State<notioff> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -113,7 +124,7 @@ class _notioffState extends State<notioff> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -146,7 +157,7 @@ class _notioffState extends State<notioff> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             Container(
@@ -179,7 +190,7 @@ class _notioffState extends State<notioff> {
             ),
             Container(
               height: 2, // ความสูงของเส้น (ปรับตามที่คุณต้องการ)
-              color: Color(0xFF5ca4a9), // สีของเส้น (ปรับตามที่คุณต้องการ)
+              color: Colors.white, // สีของเส้น (ปรับตามที่คุณต้องการ)
               margin: EdgeInsets.symmetric(horizontal: 20),
             ),
             // Container(
