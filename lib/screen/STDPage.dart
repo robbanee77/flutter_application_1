@@ -3,6 +3,7 @@ import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 import 'Search.dart';
 import 'status.dart';
+import 'home_page.dart';
 
 class STPage extends StatefulWidget {
   const STPage({Key? key}) : super(key: key);
@@ -107,7 +108,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => status()),
+                          MaterialPageRoute(builder: (context) => HomePage()),
                         );
                         // Handle button 2 press
                       },
