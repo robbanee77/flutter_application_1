@@ -53,7 +53,7 @@ class _requestState extends State<request> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => histoty()),
+                MaterialPageRoute(builder: (context) => History()),
               );
             },
           ),
