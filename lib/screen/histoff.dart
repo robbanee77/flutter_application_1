@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:toggle_switch/toggle_switch.dart'; // นำเข้า ToggleSwitch
+import 'package:flutter_application_1/screen/request.dart';
+import 'package:toggle_switch/toggle_switch.dart';
+
+void main() {
+  runApp(MaterialApp(home: History()));
+}
 
 class History extends StatefulWidget {
   const History({Key? key}) : super(key: key);
@@ -9,8 +14,13 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
-  int selectedIndex = 0; // เพิ่มตัวแปรสำหรับเก็บสถานะของ Toggle Buttons
-  String displayText = ''; // เพิ่มตัวแปรสำหรับแสดงข้อความบน UI
+  int selectedIndex = 0;
+  String displayText = '';
+  bool showLine = false;
+  bool isCancelButtonSelected =
+      false; // เพิ่มตัวแปรสำหรับตรวจสอบการเลือก "Cancel"
+  bool isBerahengButtonVisible =
+      false; // เพิ่มตัวแปรสำหรับการแสดงปุ่ม "beraheng"
 
   @override
   Widget build(BuildContext context) {
@@ -58,35 +68,159 @@ class _HistoryState extends State<History> {
                 ],
               ),
             ),
-            SizedBox(
-              height: 20,
-            ),
+            SizedBox(height: 30),
             ToggleSwitch(
-              // เพิ่ม Toggle Buttons ที่นี่
               minWidth: 100.0,
               initialLabelIndex: selectedIndex,
               labels: ['Confirm', 'Cancel'],
+              activeBgColor: [Color(0xFF5ca4a9)], // สีพื้นหลังปุ่ม "Confirm"
+              activeFgColor: Colors.white, // สีข้อความปุ่ม "Confirm"
+              //inactiveBgColor: [Color(0xFFed6a5a)], // สีพื้นหลังปุ่ม "Cancel"
+              inactiveFgColor: Colors.white, // สีข้อความปุ่ม "Cancel"
               onToggle: (index) {
                 setState(() {
                   selectedIndex = index!;
-                  // เปลี่ยนข้อความที่จะแสดงบน UI ตามที่เลือก
                   if (selectedIndex == 0) {
-                    displayText = 'Hello';
+                    displayText = 'Saturday, November 26, 2022';
+                    showLine = true;
+                    isCancelButtonSelected = false;
+                    isBerahengButtonVisible = false;
                   } else if (selectedIndex == 1) {
-                    displayText = 'Love';
+                    displayText = 'Monday , August 17, 2022';
+                    displayText = 'Sunnday , August 17, 2022';
+                    showLine = true;
+                    isCancelButtonSelected = true;
+                    isBerahengButtonVisible = true;
                   }
                 });
               },
             ),
-            SizedBox(height: 20),
-            Text(
-              displayText, // แสดงข้อความบน UI ตามที่เลือกจาก Toggle Switch
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF5ca4a9),
+            SizedBox(height: 40),
+            SizedBox(
+              width: double.infinity,
+              child: Padding(
+                padding: const EdgeInsets.only(left: 20),
+                child: Text(
+                  displayText,
+                  style: TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5ca4a9),
+                  ),
+                ),
               ),
             ),
+            if (showLine) SizedBox(height: 10),
+            if (showLine)
+              Container(
+                width: 350,
+                height: 2,
+                color: Color(0xFF5ca4a9),
+              ),
+            SizedBox(height: 20),
+            if (showLine)
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    selectedIndex == 0
+                        ? '02:00.PM  621431010 Farhan Umudee                      E-Business System  Subject '
+                        : '09:20.AM  621431171 Basree Weadaoh                     E-Business System  Subject ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                  ),
+                ),
+              ),
+            SizedBox(height: 20),
+            if (showLine &&
+                isBerahengButtonVisible) // ตรวจสอบการแสดงปุ่ม "beraheng"
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => request()),
+                          ));
+                      // การกระทำเมื่อปุ่ม "beraheng" ถูกกด
+                    },
+                    child: Text(
+                      'Edit',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF5ca4a9),
+                    ),
+                  ),
+                ],
+              ),
+
+            //box two
+            if (showLine) SizedBox(height: 10),
+            if (showLine)
+              Container(
+                width: 350,
+                height: 2,
+                color: Color(0xFF5ca4a9),
+              ),
+            SizedBox(height: 20),
+            if (showLine)
+              SizedBox(
+                width: double.infinity,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 20),
+                  child: Text(
+                    selectedIndex == 0
+                        ? '08:00.AM  621431010 Roiyan Umudee                        E-Business System  Subject '
+                        : '03:20.PM  621431121 Fatiimoh hajiarong                   E-Business System  Subject ',
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                  ),
+                ),
+              ),
+            SizedBox(height: 20),
+            if (showLine &&
+                isBerahengButtonVisible) // ตรวจสอบการแสดงปุ่ม "beraheng"
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: ((context) => request()),
+                          ));
+                      // การกระทำเมื่อปุ่ม "beraheng" ถูกกด
+                    },
+                    child: Text(
+                      'Edit',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      primary: Color(0xFF5ca4a9),
+                    ),
+                  ),
+                ],
+              ),
+            if (showLine) SizedBox(height: 20),
+            if (showLine)
+              Container(
+                width: 350,
+                height: 2,
+                color: Color(0xFF5ca4a9),
+              ),
           ],
         ),
       ),
