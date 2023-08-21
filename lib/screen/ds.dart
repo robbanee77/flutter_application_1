@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
+import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notioff.dart';
 
 class ds extends StatefulWidget {
@@ -111,6 +112,11 @@ class _dsState extends State<ds> {
               children: [
                 ElevatedButton(
                   onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: ((context) => inforcouse()),
+                        ));
                     // Handle button 1 press
                   },
                   child: Text("Fundamental Programming"),
