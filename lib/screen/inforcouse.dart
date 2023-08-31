@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
+import 'package:flutter_application_1/screen/request.dart';
 
 class inforcouse extends StatefulWidget {
   const inforcouse({super.key});
@@ -107,6 +108,26 @@ class _inforcouseState extends State<inforcouse> {
               style: TextStyle(
                 fontSize: 15,
                 //fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: ((context) => request()),
+                    ));
+                // Handle button 2 press
+              },
+              child: Text(" course reserve"),
+              style: ElevatedButton.styleFrom(
+                padding: EdgeInsets.all(10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(16.0),
+                ),
+                primary: Color(0xFF5ca4a9), // เปลี่ยนสีปุ่ม
+                shadowColor: Colors.grey,
               ),
             ),
             Container(
