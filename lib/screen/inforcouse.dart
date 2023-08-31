@@ -29,7 +29,7 @@ class _inforcouseState extends State<inforcouse> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course resevation'),
+            Text('Infor Course'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -66,14 +66,58 @@ class _inforcouseState extends State<inforcouse> {
           ),
         ],
       ),
-      body: Center(
-          child: Text(
-        'robbanee',
-        style: TextStyle(
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
+      body: Padding(
+        padding: EdgeInsets.only(top: 25, left: 20),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'IT2301-311',
+              style: TextStyle(
+                fontSize: 23,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Information Security',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              height: 2,
+              width: 350, // ปรับความยาวของเส้น
+              color: Colors.black,
+              margin: EdgeInsets.only(top: 20),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Course Description',
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'understand basic principles of mathematical logic theory Axioms of fields. Boolean algebra. Algorithms and pseudocode. Induction and recursion Relationships and Diagraphs establishing a rank relationship and rank structure Partial ordered sets, lattice, finite Boolean algebra. Representation of Boolean functions in boolean polynomial, graph, and tree form.',
+              style: TextStyle(
+                fontSize: 15,
+                //fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              height: 2,
+              width: 350, // ปรับความยาวของเส้น
+              color: Colors.black,
+              margin: EdgeInsets.only(top: 20),
+            ),
+          ],
         ),
-      )),
+      ),
     );
   }
 }
