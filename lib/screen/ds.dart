@@ -112,11 +112,6 @@ class _dsState extends State<ds> {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: ((context) => inforcouse()),
-                        ));
                     // Handle button 1 press
                   },
                   child: Text("Fundamental Programming"),
