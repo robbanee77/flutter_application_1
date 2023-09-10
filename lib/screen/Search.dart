@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 
 class Search extends StatefulWidget {
@@ -119,6 +120,11 @@ class _SearchState extends State<Search> {
                         ),
                         IconButton(
                           onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => inforcouse()),
+                                ));
                             String searchTerm = _searchController.text;
                             print('Search Term: $searchTerm');
                           },
