@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 
 class Search extends StatefulWidget {
@@ -27,7 +27,7 @@ class _SearchState extends State<Search> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course reservation'),
+            Text('Course resevation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -120,11 +120,13 @@ class _SearchState extends State<Search> {
                         ),
                         IconButton(
                           onPressed: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => inforcouse()),
+                                ));
                             String searchTerm = _searchController.text;
                             print('Search Term: $searchTerm');
-
-                            // เรียกใช้ฟังก์ชันสำหรับดึงข้อมูลจาก Firebase Firestore
-                            fetchDataFromFirestore(searchTerm);
                           },
                           icon: Icon(Icons.send),
                           color: Color(0xFFed6a5a),
@@ -139,21 +141,5 @@ class _SearchState extends State<Search> {
         ),
       ),
     );
-  }
-
-  Future<void> fetchDataFromFirestore(String searchTerm) async {
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('Subject')
-          .where('search_field', isEqualTo: searchTerm)
-          .get();
-
-      // ดึงข้อมูลจาก querySnapshot และทำอะไรกับข้อมูล
-      querySnapshot.docs.forEach((doc) {
-        print(doc.data()); // แสดงข้อมูลที่ดึงมาจาก Firestore
-      });
-    } catch (e) {
-      print('Error fetching data: $e');
-    }
   }
 }

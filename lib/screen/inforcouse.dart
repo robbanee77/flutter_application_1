@@ -6,7 +6,7 @@ import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:flutter_application_1/screen/request.dart';
 
 class inforcouse extends StatefulWidget {
-  const inforcouse({super.key});
+  const inforcouse({super.key, Object? data});
 
   @override
   _inforcouseState createState() => _inforcouseState();
@@ -30,7 +30,7 @@ class _inforcouseState extends State<inforcouse> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Infor Course'),
+            Text('Course resevation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
