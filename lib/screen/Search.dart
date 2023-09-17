@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/courseif.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -14,35 +13,22 @@ class Search extends StatefulWidget {
 
 class _SearchState extends State<Search> {
   TextEditingController _searchController = TextEditingController();
-  String searchResult = "";
 
-  // void _performSearch(String searchTerm) async {
-  //   try {
-  //     FirebaseFirestore firestore = FirebaseFirestore.instance;
-  //     CollectionReference subjectsCollection = firestore.collection('subjects');
+  Future<void> fetchDataFromFirestore(String searchTerm) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('test')
+          .where('IT123-33', isEqualTo: searchTerm)
+          .get();
 
-  //     QuerySnapshot querySnapshot =
-  //         await subjectsCollection.where('code', isEqualTo: searchTerm).get();
-
-  //     if (querySnapshot.docs.isNotEmpty) {
-  //       DocumentSnapshot documentSnapshot = querySnapshot.docs[0];
-  //       Map<String, dynamic> data =
-  //           documentSnapshot.data() as Map<String, dynamic>;
-
-  //       setState(() {
-  //         searchResult = 'Subject Data: $data';
-  //       });
-  //     } else {
-  //       setState(() {
-  //         searchResult = 'Subject not found';
-  //       });
-  //     }
-  //   } catch (e) {
-  //     setState(() {
-  //       searchResult = 'Error searching: $e';
-  //     });
-  //   }
-  // }
+      // ดึงข้อมูลจาก querySnapshot และทำอะไรกับข้อมูล
+      querySnapshot.docs.forEach((doc) {
+        print(doc.data()); // แสดงข้อมูลที่ดึงมาจาก Firestore
+      });
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +43,8 @@ class _SearchState extends State<Search> {
               height: 30,
               fit: BoxFit.contain,
             ),
-            SizedBox(width: 0.0),
-            Text('Course Reservation'),
+            SizedBox(width: 8),
+            Text('Course resevation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -105,7 +91,7 @@ class _SearchState extends State<Search> {
                   width: 150,
                   height: 150,
                 ),
-                SizedBox(height: 16.0), // ปรับระยะห่างข้างล่าง
+                SizedBox(height: 0.0),
                 Text(
                   "CODE OF SUBJECTS",
                   style: TextStyle(
@@ -114,7 +100,7 @@ class _SearchState extends State<Search> {
                     color: Color(0xFF5ca4a9),
                   ),
                 ),
-                SizedBox(height: 8.0), // ปรับระยะห่างข้างล่าง
+                SizedBox(height: 0.0),
                 Text(
                   "( Ex: GE2100-101 )",
                   style: TextStyle(
@@ -123,7 +109,7 @@ class _SearchState extends State<Search> {
                     color: Color(0xFFed6a5a),
                   ),
                 ),
-                SizedBox(height: 16.0), // ปรับระยะห่างข้างล่าง
+                SizedBox(height: 25.0),
                 Container(
                   decoration: BoxDecoration(
                     border: Border.all(
@@ -151,28 +137,22 @@ class _SearchState extends State<Search> {
                         ),
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) => inforcouse()),
-                                ));
-                            // String searchTerm = _searchController.text;
-                            // _performSearch(searchTerm);
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //       builder: ((context) => inforcouse()),
+                            //     ));
+                            String searchTerm = _searchController.text;
+                            print('Search Term: $searchTerm');
+
+                            // เรียกใช้ฟังก์ชันสำหรับดึงข้อมูลจาก Firebase Firestore
+                            fetchDataFromFirestore(searchTerm);
                           },
                           icon: Icon(Icons.send),
                           color: Color(0xFFed6a5a),
                         ),
                       ],
                     ),
-                  ),
-                ),
-                SizedBox(height: 16.0), // ปรับระยะห่างข้างล่าง
-                Text(
-                  searchResult,
-                  style: TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
                   ),
                 ),
               ],
