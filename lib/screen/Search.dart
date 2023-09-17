@@ -5,7 +5,9 @@ import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Search extends StatefulWidget {
-  const Search({Key? key}) : super(key: key);
+  CollectionReference _firebaseFiretore =
+      FirebaseFirestore.instance.collection("Subjects");
+  // const Search({Key? key}) : super(key: key);
 
   @override
   State<Search> createState() => _SearchState();
@@ -14,21 +16,21 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   TextEditingController _searchController = TextEditingController();
 
-  Future<void> fetchDataFromFirestore(String searchTerm) async {
-    try {
-      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('test')
-          .where('IT123-33', isEqualTo: searchTerm)
-          .get();
+  // Future<void> fetchDataFromFirestore(String searchTerm) async {
+  //   try {
+  //     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+  //         .collection('test')
+  //         .where('IT123-33', isEqualTo: searchTerm)
+  //         .get();
 
-      // ดึงข้อมูลจาก querySnapshot และทำอะไรกับข้อมูล
-      querySnapshot.docs.forEach((doc) {
-        print(doc.data()); // แสดงข้อมูลที่ดึงมาจาก Firestore
-      });
-    } catch (e) {
-      print('Error fetching data: $e');
-    }
-  }
+  //     // ดึงข้อมูลจาก querySnapshot และทำอะไรกับข้อมูล
+  //     querySnapshot.docs.forEach((doc) {
+  //       print(doc.data()); // แสดงข้อมูลที่ดึงมาจาก Firestore
+  //     });
+  //   } catch (e) {
+  //     print('Error fetching data: $e');
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -137,16 +139,16 @@ class _SearchState extends State<Search> {
                         ),
                         IconButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //       builder: ((context) => inforcouse()),
-                            //     ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: ((context) => inforcouse()),
+                                ));
                             String searchTerm = _searchController.text;
                             print('Search Term: $searchTerm');
 
                             // เรียกใช้ฟังก์ชันสำหรับดึงข้อมูลจาก Firebase Firestore
-                            fetchDataFromFirestore(searchTerm);
+                            // fetchDataFromFirestore(searchTerm);
                           },
                           icon: Icon(Icons.send),
                           color: Color(0xFFed6a5a),
