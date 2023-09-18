@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 
 void main() async {
@@ -85,9 +86,7 @@ class _MyAppState extends State<MyApp> {
       ),
       home: WillPopScope(
         onWillPop: () async {
-          // Handle back button press here
-          // You can navigate back to the previous screen or handle it as needed
-          return true; // Return true to allow back navigation, false to block it
+          return true;
         },
         child: Scaffold(
           backgroundColor: Color(0xFFe6ebe0),
@@ -100,16 +99,15 @@ class _MyAppState extends State<MyApp> {
                   height: 30,
                   fit: BoxFit.contain,
                 ),
-                SizedBox(width: 3), // Add spacing here
+                SizedBox(width: 3),
                 Text('Course Reservation'),
               ],
             ),
             backgroundColor: Color(0xFF5ca4a9),
             leading: IconButton(
-              icon: Icon(Icons.arrow_back), // Add a back button icon
+              icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(
-                    context); // Navigate back when the back button is pressed
+                Navigator.pop(context);
               },
             ),
             actions: [
@@ -146,7 +144,7 @@ class _MyAppState extends State<MyApp> {
           body: CustomScrollView(
             slivers: <Widget>[
               SliverToBoxAdapter(
-                child: SizedBox(height: 10), // Add spacing here
+                child: SizedBox(height: 10),
               ),
               SliverToBoxAdapter(
                 child: CupertinoSearchTextField(
@@ -156,9 +154,25 @@ class _MyAppState extends State<MyApp> {
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (BuildContext context, int index) {
+                    // ใช้ .data() เพื่อแปลง _JsonQueryDocumentSnapshot เป็น Map
+                    Map<String, dynamic> resultData =
+                        _resultList[index].data() as Map<String, dynamic>;
                     return ListTile(
-                      title: Text(_resultList[index]['Code']),
-                      subtitle: Text(_resultList[index]['Program']),
+                      title: Text(resultData['Code']),
+                      subtitle: Text(resultData['Program']),
+                      onTap: () {
+                        // เมื่อคลิกที่ ListTile ในรายการผลลัพธ์
+                        // ให้เรียกไปยังหน้ารายละเอียด และส่งข้อมูลที่เลือกไปด้วย
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ResultDetailPage(
+                              resultData:
+                                  resultData, // ส่งข้อมูลผลลัพธ์ที่ถูกเลือก
+                            ),
+                          ),
+                        );
+                      },
                     );
                   },
                   childCount: _resultList.length,
