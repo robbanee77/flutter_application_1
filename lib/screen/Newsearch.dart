@@ -158,7 +158,7 @@ class _MyAppState extends State<MyApp> {
                   (BuildContext context, int index) {
                     return ListTile(
                       title: Text(_resultList[index]['Code']),
-                      subtitle: Text(_resultList[index]['Course']),
+                      subtitle: Text(_resultList[index]['Program']),
                     );
                   },
                   childCount: _resultList.length,
