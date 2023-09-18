@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/histostu.dart';
-import 'package:flutter_application_1/screen/inforcouse.dart';
-import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screen/inforcouse.dart';
 
 class Search extends StatefulWidget {
-  CollectionReference _firebaseFiretore =
-      FirebaseFirestore.instance.collection("Subjects");
-  // const Search({Key? key}) : super(key: key);
-
   @override
   State<Search> createState() => _SearchState();
 }
@@ -16,67 +10,55 @@ class Search extends StatefulWidget {
 class _SearchState extends State<Search> {
   TextEditingController _searchController = TextEditingController();
 
-  // Future<void> fetchDataFromFirestore(String searchTerm) async {
-  //   try {
-  //     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-  //         .collection('test')
-  //         .where('IT123-33', isEqualTo: searchTerm)
-  //         .get();
+  Future<void> fetchDataFromFirestore(
+      BuildContext context, String searchTerm) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Subjects')
+          .where('Code', isEqualTo: searchTerm)
+          .get();
 
-  //     // ดึงข้อมูลจาก querySnapshot และทำอะไรกับข้อมูล
-  //     querySnapshot.docs.forEach((doc) {
-  //       print(doc.data()); // แสดงข้อมูลที่ดึงมาจาก Firestore
-  //     });
-  //   } catch (e) {
-  //     print('Error fetching data: $e');
-  //   }
-  // }
+      if (querySnapshot.docs.isNotEmpty) {
+        // ดึงข้อมูลจาก Firestore
+        Map<String, dynamic> data =
+            querySnapshot.docs.first.data() as Map<String, dynamic>;
+
+        // ส่งข้อมูลไปยังหน้า inforcouse
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => inforcouse(
+              data: data,
+            ),
+          ),
+        );
+      } else {
+        // ไม่พบข้อมูล
+        print('No data found for code: $searchTerm');
+      }
+    } catch (e) {
+      print('Error fetching data: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset(
-              'assets/images/pro.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
-            SizedBox(width: 8),
-            Text('Course resevation'),
-          ],
-        ),
+        title: Text('Course Reservation'),
         backgroundColor: Color(0xFF5ca4a9),
         actions: [
           IconButton(
-            icon: Image.asset(
-              'assets/images/noti1.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
+            icon: Icon(Icons.notifications),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => notistu()),
-              );
+              // นำผู้ใช้ไปยังหน้าแจ้งเตือน (notistu)
             },
           ),
           IconButton(
-            icon: Image.asset(
-              'assets/images/histo.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
+            icon: Icon(Icons.history),
             onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => historystu()),
-              );
+              // นำผู้ใช้ไปยังหน้าประวัติ (historystu)
             },
           ),
         ],
@@ -139,16 +121,11 @@ class _SearchState extends State<Search> {
                         ),
                         IconButton(
                           onPressed: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: ((context) => inforcouse()),
-                                ));
                             String searchTerm = _searchController.text;
-                            print('Search Term: $searchTerm');
+                            print('Course: $searchTerm');
 
                             // เรียกใช้ฟังก์ชันสำหรับดึงข้อมูลจาก Firebase Firestore
-                            // fetchDataFromFirestore(searchTerm);
+                            fetchDataFromFirestore(context, searchTerm);
                           },
                           icon: Icon(Icons.send),
                           color: Color(0xFFed6a5a),

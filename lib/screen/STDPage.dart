@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/Newsearch.dart';
+import 'package:flutter_application_1/screen/Searchpage.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
+import 'package:flutter_application_1/widgets/searches_widget.dart';
 import 'Search.dart';
 import 'status.dart';
 import 'home_page.dart';
@@ -79,7 +82,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Search()),
+                          MaterialPageRoute(builder: (context) => MyApp()),
                         );
                         // Handle button 1 press
                       },
