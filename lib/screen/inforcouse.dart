@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-
-import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screen/confirm.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
+import 'package:flutter_application_1/screen/successfull.dart';
 
 class ResultDetailPage extends StatelessWidget {
   final Map<String, dynamic> resultData;
@@ -141,12 +143,11 @@ class ResultDetailPage extends StatelessWidget {
                 'Course description': resultData['Course description'],
               };
 
-              // นำทางไปยังหน้า YourBookingPage และส่งข้อมูลผู้จองไปด้วย
+              // นำทางไปยังหน้า ConfirmPage และส่งข้อมูลผู้จองไปด้วย
               Navigator.of(context).push(
                 MaterialPageRoute(
-                  builder: (context) =>
-                      YourBookingPage(bookingData: bookingData),
-                ),
+                    builder: (context) =>
+                        ConfirmPage(bookingData: bookingData)),
               );
             },
             child: Icon(Icons.book), // ใส่ไอคอนที่คุณต้องการให้แสดงบนปุ่ม
@@ -155,47 +156,49 @@ class ResultDetailPage extends StatelessWidget {
   }
 }
 
-class YourBookingPage extends StatelessWidget {
-  final Map<String, dynamic> bookingData;
+// class YourBookingPage extends StatelessWidget {
+//   final Map<String, dynamic> bookingData;
 
-  YourBookingPage({required this.bookingData});
+//   YourBookingPage({required this.bookingData});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Your Booking Page'),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-                // child: Image.asset(
-                //     'assets/logo.png'), // เปลี่ยน 'assets/logo.png' เป็นตำแหน่งของโลโก้ของคุณ
-                ),
-            // Text('Booking Code: ${bookingData['Code']}'),
-            // Text('Program: ${bookingData['Program']}'),
-            // Text('Course: ${bookingData['Course']}'),
-            // Text('Faculty: ${bookingData['Faculty']}'),
-            // Text('Credit: ${bookingData['Credit']}'),
-            // Text('Course description: ${bookingData['Course description']}'),
-            // เพิ่มข้อมูลอื่น ๆ ที่คุณต้องการแสดง
-            SizedBox(height: 275), // เพิ่มระยะห่างระหว่างข้อมูลและปุ่ม
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Your Booking Page'),
+//       ),
+//       body: Padding(
+//         padding: const EdgeInsets.all(16.0),
+//         child: Column(
+//           crossAxisAlignment: CrossAxisAlignment.start,
+//           children: [
+//             Center(
+//                 // child: Image.asset(
+//                 //     'assets/logo.png'), // เปลี่ยน 'assets/logo.png' เป็นตำแหน่งของโลโก้ของคุณ
+//                 ),
+//             SizedBox(height: 275), // เพิ่มระยะห่างระหว่างข้อมูลและปุ่ม
 
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // โค้ดที่ต้องการให้ปุ่มทำงาน
-                  // ในกรณีนี้คุณอาจต้องนำข้อมูลไปยัง Activity อื่น
-                },
-                child: Text('ยืนยันข้อมูล'),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
+//             Center(
+//               child: ElevatedButton(
+//                 onPressed: () {
+//                   // โค้ดที่ต้องการให้ปุ่มทำงาน
+//                   // ในกรณีนี้คุณอาจต้องนำข้อมูลไปยัง Activity อื่น
+
+//                   // Navigator.push(
+//                   //   context,
+//                   //   MaterialPageRoute(
+//                   //     builder: (context) => Successfull(
+//                   //       data: {},
+//                   //     ), // เปลี่ยนเป็นหน้า Activity ที่คุณต้องการไป
+//                   //   ),
+//                   // );
+//                 },
+//                 child: Text('ยืนยันข้อมูล'),
+//               ),
+//             ),
+//           ],
+//         ),
+//       ),
+//     );
+//   }
+// }

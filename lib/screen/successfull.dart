@@ -1,23 +1,38 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 
-class NextActivity extends StatelessWidget {
-  final Map<String, dynamic> data;
+class OfficerPage extends StatelessWidget {
+  final Map<String, dynamic> userData;
 
-  NextActivity({required this.data});
+  OfficerPage({required this.userData});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Next Activity'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/pro1.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text('Course reservation'),
+          ],
+        ),
+        backgroundColor: Color(0xFF5ca4a9),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // แสดงข้อมูลผู้ใช้ที่ถูกส่งมาจาก YourBookingPage
-            Text('Ameer: ${data['Student']}'),
-            // สามารถแสดงข้อมูลอื่น ๆ ตามที่คุณต้องการ
+          children: [
+            Text('ข้อมูลที่ดึงมาจาก ConfirmPage:'),
+            Text('ชื่อ: ${userData['name']}'),
+            Text('อีเมล: ${userData['email']}'),
+            // แสดงข้อมูลอื่นๆ ตามความต้องการ
           ],
         ),
       ),
