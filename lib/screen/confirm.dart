@@ -38,7 +38,7 @@ class ConfirmPage extends StatelessWidget {
                         .pop(); // ปิดป็อปอัพ Confirmation Dialog
                     Navigator.of(context).pushReplacement(MaterialPageRoute(
                         builder: (context) =>
-                            OfficerPage() // เรียกหน้า Officer ที่คุณต้องการไป
+                            STPage() // เรียกหน้า Officer ที่คุณต้องการไป
                         ));
                   },
                   child: Text('ปิด'),
