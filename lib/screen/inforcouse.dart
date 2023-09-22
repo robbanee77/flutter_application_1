@@ -145,9 +145,7 @@ class ResultDetailPage extends StatelessWidget {
 
               // นำทางไปยังหน้า ConfirmPage และส่งข้อมูลผู้จองไปด้วย
               Navigator.of(context).push(
-                MaterialPageRoute(
-                    builder: (context) =>
-                        ConfirmPage(bookingData: bookingData)),
+                MaterialPageRoute(builder: (context) => ConfirmPage()),
               );
             },
             child: Icon(Icons.book), // ใส่ไอคอนที่คุณต้องการให้แสดงบนปุ่ม

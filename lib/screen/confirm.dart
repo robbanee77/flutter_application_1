@@ -1,42 +1,92 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter_application_1/screen/successfull.dart'; // แทนตามที่ได้ระบุเส้นทาง
+import 'package:flutter_application_1/screen/STDPage.dart';
+import 'package:flutter_application_1/screen/successfull.dart';
+import 'package:flutter_application_1/screen/test%20login.dart'; // แทนตามที่ได้ระบุเส้นทาง
 
 class ConfirmPage extends StatelessWidget {
-  final Map<String, dynamic> bookingData;
+  Future<void> _showConfirmationDialog(
+      BuildContext context, String userEmail) async {
+    try {
+      QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+          .collection('Users')
+          .where('email', isEqualTo: userEmail)
+          .get();
 
-  ConfirmPage({required this.bookingData});
-
-  void _showConfirmationDialog(
-      BuildContext context, Map<String, dynamic> userData) {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text('ยืนยันข้อมูลสำเร็จ'),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('ข้อมูลถูกต้อง'),
-              SizedBox(height: 10),
-            ],
-          ),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // ปิดป็อปอัพ Confirmation Dialog
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                  builder: (context) => OfficerPage(
-                      userData: userData), // เรียกหน้า Officer ที่คุณต้องการไป
-                ));
-              },
-              child: Text('ปิด'),
-            ),
-          ],
+      if (querySnapshot.docs.isNotEmpty) {
+        var userData = querySnapshot.docs.first.data() as Map<String, dynamic>;
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('ยืนยันข้อมูลสำเร็จ'),
+              content: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('ข้อมูลถูกต้อง'),
+                  SizedBox(height: 10),
+                  // Text('Email: ${userData['email']}'),
+                  // เพิ่มข้อมูลอื่น ๆ ที่คุณต้องการแสดง
+                ],
+              ),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .pop(); // ปิดป็อปอัพ Confirmation Dialog
+                    Navigator.of(context).pushReplacement(MaterialPageRoute(
+                        builder: (context) =>
+                            OfficerPage() // เรียกหน้า Officer ที่คุณต้องการไป
+                        ));
+                  },
+                  child: Text('ปิด'),
+                ),
+              ],
+            );
+          },
         );
-      },
-    );
+      } else {
+        // ไม่พบข้อมูลผู้ใช้
+        showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              title: Text('ไม่พบข้อมูลผู้ใช้'),
+              content: Text('ไม่พบข้อมูลผู้ใช้ที่ตรงกับอีเมลนี้'),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop(); // ปิดป็อปอัพ Dialog
+                  },
+                  child: Text('ปิด'),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    } catch (e) {
+      // แสดงข้อความข้อผิดพลาดหากเกิดข้อผิดพลาดในการดึงข้อมูล
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('ข้อผิดพลาด'),
+            content: Text('เกิดข้อผิดพลาดในการดึงข้อมูล: $e'),
+            actions: [
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).pop(); // ปิดป็อปอัพ Dialog
+                },
+                child: Text('ปิด'),
+              ),
+            ],
+          );
+        },
+      );
+    }
   }
 
   @override
@@ -64,7 +114,7 @@ class ConfirmPage extends StatelessWidget {
                       var userData = querySnapshot.docs.first.data()
                           as Map<String, dynamic>;
                       // เรียกใช้ _showConfirmationDialog พร้อมส่งข้อมูลผู้ใช้
-                      _showConfirmationDialog(context, userData);
+                      _showConfirmationDialog(context, userData['email']);
                     }
                   });
                 },
