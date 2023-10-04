@@ -97,14 +97,42 @@ class _LoginActivityState extends State<LoginActivity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
-        title: Text('Login'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text('Course reservation'),
+          ],
+        ),
+        backgroundColor: Color(0xFF5ca4a9),
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 0),
+            Image.asset(
+              "assets/images/user.png",
+              width: 130,
+              height: 130,
+            ),
+            SizedBox(height: 10.0),
+            Text(
+              'LOGIN',
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF5ca4a9),
+              ),
+            ),
             TextField(
               controller: emailController,
               decoration: InputDecoration(labelText: 'Email'),
@@ -141,6 +169,14 @@ class _LoginActivityState extends State<LoginActivity> {
                 }
               },
               child: Text('Login'),
+              style: ElevatedButton.styleFrom(
+                elevation: 8,
+                shadowColor: Colors.grey,
+                primary: Color(0xFF5ca4a9),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+              ),
             ),
           ],
         ),
