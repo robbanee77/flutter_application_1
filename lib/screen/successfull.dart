@@ -20,9 +20,7 @@ class OfficerPage extends StatelessWidget {
             StreamBuilder(
               stream: FirebaseFirestore.instance
                   .collection('Users')
-                  .where('email',
-                      isEqualTo:
-                          'robbanee@ftu.ac.th') // ใช้อีเมลของผู้ที่ล็อกอินที่คุณต้องการแสดง
+                  .where('email') // ใช้อีเมลของผู้ที่ล็อกอินที่คุณต้องการแสดง
                   .snapshots(),
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/STDPage.dart';
+import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:flutter_application_1/screen/successfull.dart';
 import 'package:flutter_application_1/screen/test%20login.dart'; // แทนตามที่ได้ระบุเส้นทาง
 
@@ -21,11 +23,11 @@ class ConfirmPage extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('ยืนยันข้อมูลสำเร็จ'),
+              title: Text('Successfully confirmed information'),
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('ข้อมูลถูกต้อง'),
+                  Text('The information is correct.'),
                   SizedBox(height: 10),
                   // Text('Email: ${userData['email']}'),
                   // เพิ่มข้อมูลอื่น ๆ ที่คุณต้องการแสดง
@@ -41,7 +43,13 @@ class ConfirmPage extends StatelessWidget {
                             OfficerPage() // เรียกหน้า Officer ที่คุณต้องการไป
                         ));
                   },
-                  child: Text('ปิด'),
+                  child: Text(
+                    'close',
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Color(0xFF5ca4a9), // เปลี่ยนสีของปุ่มเป็น #5ca4a9
+                  ),
                 ),
               ],
             );
@@ -53,14 +61,19 @@ class ConfirmPage extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('ไม่พบข้อมูลผู้ใช้'),
-              content: Text('ไม่พบข้อมูลผู้ใช้ที่ตรงกับอีเมลนี้'),
+              title: Text('No user information found.'),
+              content: Text(
+                  'No user information found matching this email address.'),
               actions: [
                 ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop(); // ปิดป็อปอัพ Dialog
                   },
-                  child: Text('ปิด'),
+                  child: Text('close'),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor:
+                        Color(0xFF5ca4a9), // เปลี่ยนสีของปุ่มเป็น #5ca4a9
+                  ),
                 ),
               ],
             );
@@ -73,14 +86,18 @@ class ConfirmPage extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('ข้อผิดพลาด'),
-            content: Text('เกิดข้อผิดพลาดในการดึงข้อมูล: $e'),
+            title: Text('Error'),
+            content: Text('An error occurred fetching data: $e'),
             actions: [
               ElevatedButton(
                 onPressed: () {
                   Navigator.of(context).pop(); // ปิดป็อปอัพ Dialog
                 },
-                child: Text('ปิด'),
+                child: Text('close'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor:
+                      Color(0xFF5ca4a9), // เปลี่ยนสีของปุ่มเป็น #5ca4a9
+                ),
               ),
             ],
           );
@@ -92,8 +109,55 @@ class ConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
-        title: Text('Confirm Page'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text('Course resevetion'),
+          ],
+        ),
+        backgroundColor: Color(0xFF5ca4a9),
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/noti1.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => notistu()),
+              );
+              // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
+              // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/histo.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => historystu()),
+              );
+              // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
+              // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
+            },
+          ),
+        ],
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -118,7 +182,17 @@ class ConfirmPage extends StatelessWidget {
                     }
                   });
                 },
-                child: Text('ยืนยันข้อมูล'),
+                child: Text(
+                  'Confirm booking',
+                  style: TextStyle(
+                    fontSize: 20, // ปรับขนาดตัวอักษรตามที่คุณต้องการ
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  minimumSize:
+                      Size(180, 100), // ปรับขนาดของปุ่มตามที่คุณต้องการ
+                  backgroundColor: Color(0xFF5ca4a9),
+                ),
               ),
             ),
           ],
