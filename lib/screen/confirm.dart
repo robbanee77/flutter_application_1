@@ -6,7 +6,7 @@ import 'package:flutter_application_1/screen/STDPage.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:flutter_application_1/screen/successfull.dart';
-import 'package:flutter_application_1/screen/test%20login.dart'; // แทนตามที่ได้ระบุเส้นทาง
+import 'package:flutter_application_1/screen/login.dart'; // แทนตามที่ได้ระบุเส้นทาง
 
 class ConfirmPage extends StatelessWidget {
   Future<void> _showConfirmationDialog(

@@ -4,7 +4,7 @@ import 'package:flutter_application_1/screen/confirm.dart';
 import 'package:flutter_application_1/screen/home.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/screen/successfull.dart';
-import 'package:flutter_application_1/screen/test%20login.dart';
+import 'package:flutter_application_1/screen/login.dart';
 import 'package:flutter_application_1/widgets/searches_widget.dart';
 
 void main() async {

@@ -4,9 +4,6 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
 import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notioff.dart';
-import 'package:flutter_application_1/screen/testsearch.dart';
-import 'package:flutter_application_1/screen/Searchpage.dart';
-import 'package:flutter_application_1/screen/Search.dart';
 
 class ds extends StatefulWidget {
   const ds({super.key});
