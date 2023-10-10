@@ -64,20 +64,20 @@ class _STPageState extends State<STPage> {
               );
             },
           ),
-          // IconButton(
-          //   icon: Image.asset(
-          //     'assets/images/logout.png',
-          //     width: 30,
-          //     height: 30,
-          //     fit: BoxFit.contain,
-          //   ),
-          //   onPressed: () {
-          //     Navigator.push(
-          //       context,
-          //       MaterialPageRoute(builder: (context) => LogoutPage()),
-          //     );
-          //   },
-          // ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
+              );
+            },
+          ),
         ],
       ),
       body: Column(
