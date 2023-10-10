@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
+import 'package:flutter_application_1/screen/home.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:flutter_application_1/widgets/searches_widget.dart';
 import 'status.dart';
@@ -22,14 +24,14 @@ class _STPageState extends State<STPage> {
       appBar: AppBar(
         title: Row(
           children: [
-            Image.asset(
-              'assets/images/pro.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
+            // Image.asset(
+            //   'assets/images/pro.png',
+            //   width: 30,
+            //   height: 30,
+            //   fit: BoxFit.contain,
+            // ),
             SizedBox(width: 8),
-            Text('Course resevation'),
+            Text('Course '),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -60,8 +62,20 @@ class _STPageState extends State<STPage> {
                 context,
                 MaterialPageRoute(builder: (context) => historystu()),
               );
-              // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
-              // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
+              );
             },
           ),
         ],
@@ -109,7 +123,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
+                          MaterialPageRoute(builder: (context) => homescreen()),
                         );
                         // Handle button 2 press
                       },

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/loginStudent.dart';
-import 'package:flutter_application_1/screen/Oldloginofficer.dart';
+import 'package:flutter_application_1/screen/loginaut.dart';
 import 'package:flutter_application_1/screen/login.dart';
 
 class homescreen extends StatelessWidget {
@@ -49,7 +49,7 @@ class homescreen extends StatelessWidget {
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {
-                          return LoginActivity();
+                          return LoginApp();
                         }),
                       );
                     },
