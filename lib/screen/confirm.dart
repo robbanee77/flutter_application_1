@@ -3,52 +3,51 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/STDPage.dart';
+import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
 import 'package:flutter_application_1/screen/successfull.dart';
 import 'package:flutter_application_1/screen/login.dart'; // แทนตามที่ได้ระบุเส้นทาง
 
 class ConfirmPage extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   Future<void> _showConfirmationDialog(
       BuildContext context, String userEmail) async {
     try {
       QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-          .collection('Users')
+          .collection('Users1')
           .where('email', isEqualTo: userEmail)
           .get();
 
       if (querySnapshot.docs.isNotEmpty) {
         var userData = querySnapshot.docs.first.data() as Map<String, dynamic>;
+        // เรียกใช้ Firestore เพื่อบันทึกข้อมูลผู้จอง
+        var bookingData = {
+          'code': userData['code'], // รหัสผู้ใช้
+          'name': userData['name'], // ชื่อผู้ใช้
+          'email': userData['email'],
+          // เพิ่มข้อมูลอื่น ๆ ที่คุณต้องการบันทึก
+        };
+        await FirebaseFirestore.instance
+            .collection('Booking') // ชื่อคอลเล็กชันสำหรับข้อมูลการจอง
+            .doc(userData['userId']) // ใช้ userId เป็นรหัสเอกสาร
+            .set(bookingData); // บันทึกข้อมูลในเอกสารนี้
+
         showDialog(
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
-              title: Text('Successfully confirmed information'),
-              content: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text('The information is correct.'),
-                  SizedBox(height: 10),
-                  // Text('Email: ${userData['email']}'),
-                  // เพิ่มข้อมูลอื่น ๆ ที่คุณต้องการแสดง
-                ],
-              ),
+              title: Text('Booking Successful'),
+              content: Text('Your booking has been confirmed and saved.'),
               actions: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.of(context)
-                        .pop(); // ปิดป็อปอัพ Confirmation Dialog
-                    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                        builder: (context) =>
-                            OfficerPage() // เรียกหน้า Officer ที่คุณต้องการไป
-                        ));
+                    Navigator.pop(context);
                   },
-                  child: Text(
-                    'close',
-                  ),
+                  child: Text('OK'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        Color(0xFF5ca4a9), // เปลี่ยนสีของปุ่มเป็น #5ca4a9
+                    backgroundColor: Color(0xFF5ca4a9),
                   ),
                 ),
               ],
@@ -71,8 +70,7 @@ class ConfirmPage extends StatelessWidget {
                   },
                   child: Text('close'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor:
-                        Color(0xFF5ca4a9), // เปลี่ยนสีของปุ่มเป็น #5ca4a9
+                    backgroundColor: Color(0xFF5ca4a9),
                   ),
                 ),
               ],
@@ -95,8 +93,7 @@ class ConfirmPage extends StatelessWidget {
                 },
                 child: Text('close'),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor:
-                      Color(0xFF5ca4a9), // เปลี่ยนสีของปุ่มเป็น #5ca4a9
+                  backgroundColor: Color(0xFF5ca4a9),
                 ),
               ),
             ],

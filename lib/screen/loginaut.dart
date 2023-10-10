@@ -205,6 +205,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/confirm.dart';
 import 'depart.dart';
 import 'STDPage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -214,6 +215,8 @@ void main() {
 }
 
 class LoginApp extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
