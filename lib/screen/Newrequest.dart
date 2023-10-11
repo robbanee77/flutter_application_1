@@ -54,6 +54,59 @@ class _MyWidgetState extends State<MyWidget> {
                       Text('Subjects: ${data['data']}'),
                     ],
                   ),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ElevatedButton(
+                        onPressed: () async {
+                          // บันทึกสถานะการยืนยันลงใน Firebase
+                          await FirebaseFirestore.instance
+                              .collection('booking')
+                              .doc(document.id)
+                              .update({
+                            'confirmed': true,
+                          });
+
+                          // เพิ่มข้อมูลในคอลเล็กชัน "confirm" ใน Cloud Firestore
+                          await FirebaseFirestore.instance
+                              .collection('confirm')
+                              .add({
+                            'code': data['code'],
+                            'name': data['name'],
+                            'email': data['email'],
+                            'data': data['data'],
+                          });
+
+                          // ลบข้อมูลจากคอลเล็กชัน "booking" ใน Cloud Firestore
+                          await FirebaseFirestore.instance
+                              .collection('booking')
+                              .doc(document.id)
+                              .delete();
+                        },
+                        child: Text('Confirm'),
+                      ),
+                      ElevatedButton(
+                        onPressed: () async {
+                          // เพิ่มข้อมูลในคอลเล็กชัน "cancel" ใน Cloud Firestore
+                          await FirebaseFirestore.instance
+                              .collection('cancel')
+                              .add({
+                            'code': data['code'],
+                            'name': data['name'],
+                            'email': data['email'],
+                            'data': data['data'],
+                          });
+
+                          // ลบข้อมูลจากคอลเล็กชัน "booking" ใน Cloud Firestore
+                          await FirebaseFirestore.instance
+                              .collection('booking')
+                              .doc(document.id)
+                              .delete();
+                        },
+                        child: Text('Cancel'),
+                      ),
+                    ],
+                  ),
                 );
               }).toList(),
             );
