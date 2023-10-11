@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/STDPage.dart';
 import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
@@ -242,7 +243,12 @@ class ConfirmPage extends StatelessWidget {
               actions: [
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => STPage(),
+                      ),
+                    );
                   },
                   child: Text('OK'),
                   style: ElevatedButton.styleFrom(
@@ -302,7 +308,8 @@ class ConfirmPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFe6ebe0),
+      backgroundColor:
+          Color(0xFFe6ebe0), // Updated background color to light green
       appBar: AppBar(
         title: Row(
           children: [
@@ -313,7 +320,7 @@ class ConfirmPage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course reservation'),
+            Text('Course '),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -343,6 +350,20 @@ class ConfirmPage extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => historystu()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
               );
             },
           ),

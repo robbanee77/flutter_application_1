@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
@@ -79,7 +80,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Course Reservation',
+      title: 'Course',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -99,17 +100,11 @@ class _MyAppState extends State<MyApp> {
                   height: 30,
                   fit: BoxFit.contain,
                 ),
-                SizedBox(width: 3),
-                Text('Course Reservation'),
+                SizedBox(width: 8),
+                Text('Course '),
               ],
             ),
             backgroundColor: Color(0xFF5ca4a9),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
             actions: [
               IconButton(
                 icon: Image.asset(
@@ -136,6 +131,20 @@ class _MyAppState extends State<MyApp> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) => historystu()),
+                  );
+                },
+              ),
+              IconButton(
+                icon: Image.asset(
+                  'assets/images/logout.png',
+                  width: 30,
+                  height: 30,
+                  fit: BoxFit.contain,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => LogoutPage()),
                   );
                 },
               ),

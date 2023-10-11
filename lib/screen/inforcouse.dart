@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/confirm.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
@@ -162,7 +163,8 @@ class ResultDetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFe6ebe0),
+      backgroundColor:
+          Color(0xFFe6ebe0), // Updated background color to light green
       appBar: AppBar(
         title: Row(
           children: [
@@ -173,7 +175,7 @@ class ResultDetailPage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course reservation'),
+            Text('Course '),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -186,7 +188,10 @@ class ResultDetailPage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             onPressed: () {
-              // ไปยังหน้าอื่น ๆ เมื่อกดปุ่ม
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => notistu()),
+              );
             },
           ),
           IconButton(
@@ -197,7 +202,24 @@ class ResultDetailPage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
             onPressed: () {
-              // ไปยังหน้าอื่น ๆ เมื่อกดปุ่ม
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => historystu()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
+              );
             },
           ),
         ],
@@ -274,7 +296,6 @@ class ResultDetailPage extends StatelessWidget {
               'Course': resultData['Course'],
               'Faculty': resultData['Faculty'],
               'Credit': resultData['Credit'],
-              'Course description': resultData['Course description'],
             };
 
             // รับผู้ใช้ปัจจุบันที่เข้าสู่ระบบ (ถ้ามีการใช้งาน Firebase Authentication)
