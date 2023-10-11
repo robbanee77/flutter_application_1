@@ -205,6 +205,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/Newrequest.dart';
 import 'package:flutter_application_1/screen/confirm.dart';
 import 'depart.dart';
 import 'STDPage.dart';
@@ -353,7 +354,7 @@ class _OfficerState extends State<OfficerState> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Depart()),
+                                      builder: (context) => Newrequest()),
                                 );
 
                                 // บันทึกข้อมูลผู้ใช้ลงใน Firestore
