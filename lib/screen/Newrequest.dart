@@ -80,7 +80,13 @@ class _MyWidgetState extends State<MyWidget> {
                               .doc(document.id)
                               .delete();
 
-                          showConfirmationDialog(context);
+                          // แจ้งเตือนวิชาที่ถูกยืนยัน
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content:
+                                  Text('วิชา ${data['data']} ถูกยืนยันแล้ว'),
+                            ),
+                          );
                         },
                         child: Text('Confirm'),
                       ),
@@ -110,26 +116,6 @@ class _MyWidgetState extends State<MyWidget> {
           }
         },
       ),
-    );
-  }
-
-  void showConfirmationDialog(BuildContext context) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return AlertDialog(
-          title: Text('การยืนยันสำเร็จ'),
-          content: Text('ข้อมูลของคุณถูกยืนยันแล้ว'),
-          actions: [
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // ปิดหน้าต่างแจ้งเตือน
-              },
-              child: Text('OK'),
-            ),
-          ],
-        );
-      },
     );
   }
 }

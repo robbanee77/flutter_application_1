@@ -7,20 +7,41 @@ class Newnotifstudent extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('ข้อมูลการยืนยัน'),
+        title: Text('ข้อมูลการยืนยันและยกเลิก'),
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('ข้อมูลของคุณถูกยืนยันแล้ว'),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop(); // ปิดหน้า "Newnotifstudent"
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('confirm').snapshots(),
+          builder: (context, confirmSnapshot) {
+            if (confirmSnapshot.connectionState == ConnectionState.waiting) {
+              return CircularProgressIndicator();
+            }
+
+            final numberOfConfirmations = confirmSnapshot.data!.docs.length;
+
+            return StreamBuilder<QuerySnapshot>(
+              stream:
+                  FirebaseFirestore.instance.collection('cancel').snapshots(),
+              builder: (context, cancelSnapshot) {
+                if (cancelSnapshot.connectionState == ConnectionState.waiting) {
+                  return CircularProgressIndicator();
+                }
+
+                final numberOfCancellations = cancelSnapshot.data!.docs.length;
+
+                return ListView.builder(
+                  itemCount: numberOfConfirmations + numberOfCancellations,
+                  itemBuilder: (context, index) {
+                    if (index < numberOfConfirmations) {
+                      return Text('Your information has been verified.');
+                    } else {
+                      return Text('Your information has been canceled.');
+                    }
+                  },
+                );
               },
-              child: Text('กลับ'),
-            ),
-          ],
+            );
+          },
         ),
       ),
     );
