@@ -6,6 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/screen/successfull.dart';
 import 'package:flutter_application_1/screen/login.dart';
 import 'package:flutter_application_1/widgets/searches_widget.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

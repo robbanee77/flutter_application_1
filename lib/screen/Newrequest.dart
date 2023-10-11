@@ -59,7 +59,6 @@ class _MyWidgetState extends State<MyWidget> {
                     children: [
                       ElevatedButton(
                         onPressed: () async {
-                          // บันทึกสถานะการยืนยันลงใน Firebase
                           await FirebaseFirestore.instance
                               .collection('booking')
                               .doc(document.id)
@@ -67,7 +66,6 @@ class _MyWidgetState extends State<MyWidget> {
                             'confirmed': true,
                           });
 
-                          // เพิ่มข้อมูลในคอลเล็กชัน "confirm" ใน Cloud Firestore
                           await FirebaseFirestore.instance
                               .collection('confirm')
                               .add({
@@ -77,17 +75,17 @@ class _MyWidgetState extends State<MyWidget> {
                             'data': data['data'],
                           });
 
-                          // ลบข้อมูลจากคอลเล็กชัน "booking" ใน Cloud Firestore
                           await FirebaseFirestore.instance
                               .collection('booking')
                               .doc(document.id)
                               .delete();
+
+                          showConfirmationDialog(context);
                         },
                         child: Text('Confirm'),
                       ),
                       ElevatedButton(
                         onPressed: () async {
-                          // เพิ่มข้อมูลในคอลเล็กชัน "cancel" ใน Cloud Firestore
                           await FirebaseFirestore.instance
                               .collection('cancel')
                               .add({
@@ -97,7 +95,6 @@ class _MyWidgetState extends State<MyWidget> {
                             'data': data['data'],
                           });
 
-                          // ลบข้อมูลจากคอลเล็กชัน "booking" ใน Cloud Firestore
                           await FirebaseFirestore.instance
                               .collection('booking')
                               .doc(document.id)
@@ -113,6 +110,26 @@ class _MyWidgetState extends State<MyWidget> {
           }
         },
       ),
+    );
+  }
+
+  void showConfirmationDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('การยืนยันสำเร็จ'),
+          content: Text('ข้อมูลของคุณถูกยืนยันแล้ว'),
+          actions: [
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop(); // ปิดหน้าต่างแจ้งเตือน
+              },
+              child: Text('OK'),
+            ),
+          ],
+        );
+      },
     );
   }
 }

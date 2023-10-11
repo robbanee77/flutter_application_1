@@ -44,6 +44,7 @@ dependencies:
   toggle_switch: ^2.1.0
   material: ^1.0.0+2
   cloud_firestore: ^4.9.1
+  firebase_messaging: ^14.6.9
 
 flutter_icons:
  android: true
