@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/home.dart';
 import 'package:flutter_application_1/screen/login.dart';
 
@@ -23,28 +24,45 @@ class _LogoutPageState extends State<LogoutPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          Color(0xFFe6ebe0), // Updated background color to light green
       appBar: AppBar(
-        title: Text('Logout'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text('  Log out'),
+          ],
+        ),
+        backgroundColor: Color(0xFF5ca4a9),
+        actions: [],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'คุณต้องการล็อคเอาท์หรือไม่?',
-              style: TextStyle(fontSize: 18.0),
+              'Do you want to log out ?',
+              style: TextStyle(fontSize: 20.0),
             ),
             SizedBox(height: 20.0),
             ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => homescreen()),
-                ); // นำผู้ใช้กลับสู่หน้า homescreen
-                // อาจต้องเพิ่มโค้ดเพิ่มเติมที่นี่หากมีการจัดการเพิ่มเติมหลังจากกลับสู่หน้าหลัก
-              },
-              child: Text('ล็อคเอาท์'),
-            ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => homescreen()),
+                  ); // นำผู้ใช้กลับสู่หน้า homescreen
+                  // อาจต้องเพิ่มโค้ดเพิ่มเติมที่นี่หากมีการจัดการเพิ่มเติมหลังจากกลับสู่หน้าหลัก
+                },
+                child: Text('Log out'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF5ca4a9),
+                )),
           ],
         ),
       ),

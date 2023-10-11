@@ -32,7 +32,7 @@ class _STPageState extends State<STPage> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course '),
+            Text(' Course'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),

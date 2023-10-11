@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/inforcouse.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
@@ -116,7 +117,7 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => notistu()),
+                    MaterialPageRoute(builder: (context) => Newnotifstudent()),
                   );
                 },
               ),

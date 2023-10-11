@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/STDPage.dart';
 import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
@@ -238,6 +239,8 @@ class ConfirmPage extends StatelessWidget {
           context: context,
           builder: (BuildContext context) {
             return AlertDialog(
+              backgroundColor:
+                  Color(0xFFe6ebe0), // กำหนดสีพื้นหลังของ AlertDialog
               title: Text('Booking Successful'),
               content: Text('Your booking has been confirmed and saved.'),
               actions: [
@@ -335,7 +338,7 @@ class ConfirmPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => notistu()),
+                MaterialPageRoute(builder: (context) => Newnotifstudent()),
               );
             },
           ),

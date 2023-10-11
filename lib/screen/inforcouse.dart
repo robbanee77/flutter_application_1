@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/confirm.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
@@ -190,7 +191,7 @@ class ResultDetailPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => notistu()),
+                MaterialPageRoute(builder: (context) => Newnotifstudent()),
               );
             },
           ),
@@ -331,6 +332,7 @@ class ResultDetailPage extends StatelessWidget {
             );
           },
           child: Icon(Icons.book),
+          backgroundColor: Color(0xFF5ca4a9),
         ),
       ),
     );
