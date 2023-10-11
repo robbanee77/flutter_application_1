@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/histoff.dart';
 
 void main() {
   runApp(Newrequest());
@@ -25,8 +27,53 @@ class _MyWidgetState extends State<MyWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
-        title: Text('รายชื่อผู้จอง'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text('Course resevation'),
+          ],
+        ),
+        backgroundColor: Color(0xFF5ca4a9),
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/histo.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => History()),
+              );
+              // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
+              // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot>(
         stream: FirebaseFirestore.instance.collection('booking').snapshots(),
