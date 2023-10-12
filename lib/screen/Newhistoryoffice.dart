@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/Newrequest.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -17,32 +18,49 @@ class _HistoryState extends State<Newhistoryoffice> {
   int selectedIndex = 0;
   String displayText = '';
   bool showLine = false;
+  List<Map<String, dynamic>> confirmData = [];
 
   Future<void> getConfirmData() async {
     try {
       QuerySnapshot querySnapshot =
           await FirebaseFirestore.instance.collection('confirm').get();
 
-      // เปลี่ยนข้อมูลจาก QuerySnapshot เป็น List of QueryDocumentSnapshot
-      List<QueryDocumentSnapshot> documents = querySnapshot.docs;
+      confirmData.clear();
 
-      // สร้าง List เพื่อเก็บข้อมูลจากทุกเอกสาร
-      List<Map<String, dynamic>> allData = [];
-
-      for (QueryDocumentSnapshot document in documents) {
-        // เรียกใช้ .data() เพื่อรับข้อมูลจากเอกสารแต่ละเอกสาร
+      for (QueryDocumentSnapshot document in querySnapshot.docs) {
         Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-
-        // เพิ่มข้อมูลจากเอกสารนี้ใน List
-        allData.add(data);
+        confirmData.add(data);
       }
 
-      // แสดงข้อมูลหรือทำอะไรก็ตามที่คุณต้องการกับข้อมูล
-      print(allData);
+      setState(() {
+        displayText = 'Data from Firestore:\n';
+        for (var data in confirmData) {
+          displayText += ' ${data['code']}, ${data['name']}, ${data['data']}\n';
+        }
+        showLine = true;
+      });
+    } catch (e) {
+      print('เกิดข้อผิดพลาดในการดึงข้อมูล: $e');
+    }
+  }
+
+  Future<void> getCancelData() async {
+    try {
+      QuerySnapshot querySnapshot =
+          await FirebaseFirestore.instance.collection('cancel').get();
+
+      confirmData.clear();
+
+      for (QueryDocumentSnapshot document in querySnapshot.docs) {
+        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+        confirmData.add(data);
+      }
 
       setState(() {
-        // อัปเดตข้อมูลที่จะแสดงในแอปของคุณ
-        displayText = 'Data from Firestore:\n${allData.toString()}';
+        displayText = 'Data from Firestore:\n';
+        for (var data in confirmData) {
+          displayText += ' ${data['code']}, ${data['name']}, ${data['data']}\n';
+        }
         showLine = true;
       });
     } catch (e) {
@@ -88,18 +106,17 @@ class _HistoryState extends State<Newhistoryoffice> {
               minWidth: 100.0,
               initialLabelIndex: selectedIndex,
               labels: ['Confirm', 'Cancel'],
-              activeBgColor: [Color(0xFF5ca4a9)],
               activeFgColor: Colors.white,
               inactiveFgColor: Colors.white,
               onToggle: (index) {
                 setState(() {
                   selectedIndex = index!;
                   if (selectedIndex == 0) {
-                    showLine = false; // ปิดการแสดงเส้นที่เดิม
-                    getConfirmData(); // เรียกใช้งานเมื่อกด "Confirm"
+                    showLine = false;
+                    getConfirmData();
                   } else if (selectedIndex == 1) {
-                    displayText = 'Monday , August 17, 2022';
-                    showLine = true;
+                    showLine = false;
+                    getCancelData(); // เรียกใช้งานเมื่อกด "Cancel"
                   }
                 });
               },
@@ -125,6 +142,35 @@ class _HistoryState extends State<Newhistoryoffice> {
                 width: 350,
                 height: 2,
                 color: Color(0xFF5ca4a9),
+              ),
+
+            // สร้าง ListView.builder เพื่อแสดงปุ่ม Edit โดยไม่แสดงข้อมูลอีกครั้ง
+            if (selectedIndex == 1) // ตรวจสอบว่าเลือก Cancel
+              Container(
+                height: 300, // ปรับความสูงตามที่คุณต้องการ
+                child: ListView.builder(
+                  itemCount: confirmData.length,
+                  itemBuilder: (context, index) {
+                    var data = confirmData[index];
+                    return ListTile(
+                      // ไม่แสดงข้อมูลในรายการ
+                      // เพิ่มปุ่ม Edit ที่นี่
+                      title: SizedBox.shrink(), // รายการว่าง
+                      trailing: IconButton(
+                        icon: Icon(Icons.edit),
+                        onPressed: () {
+                          // รีแเค็สชิ้นข้อมูลหรือกระทำอื่น ๆ เมื่อกดปุ่ม Edit
+                          // ในตัวอย่างนี้ไม่ได้ทำอะไรเพิ่มเติม
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Newrequest()),
+                          );
+                        },
+                      ),
+                    );
+                  },
+                ),
               ),
           ],
         ),
