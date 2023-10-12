@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newhistoryoffice.dart';
 import 'package:flutter_application_1/screen/histoff.dart';
 
 void main() {
@@ -53,7 +54,7 @@ class _MyWidgetState extends State<MyWidget> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => History()),
+                MaterialPageRoute(builder: (context) => Newhistoryoffice()),
               );
               // ดักเหตุการณ์เมื่อกดปุ่ม Info ที่อยู่ฝั่งซ้ายของ AppBar
               // คุณสามารถใส่โค้ดที่คุณต้องการทำเมื่อกดปุ่มนี้ได้ที่นี่
