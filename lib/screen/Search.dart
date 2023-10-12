@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 import 'package:flutter_application_1/screen/inforcouse.dart';
@@ -12,15 +13,15 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(Search());
 }
 
-class MyApp extends StatefulWidget {
+class Search extends StatefulWidget {
   @override
-  State<MyApp> createState() => _MyAppState();
+  State<Search> createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
+class _MyAppState extends State<Search> {
   List _allResults = [];
   List _resultList = [];
   final TextEditingController _searchController = TextEditingController();
@@ -131,7 +132,8 @@ class _MyAppState extends State<MyApp> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => historystu()),
+                    MaterialPageRoute(
+                        builder: (context) => NewHistoryStudent()),
                   );
                 },
               ),

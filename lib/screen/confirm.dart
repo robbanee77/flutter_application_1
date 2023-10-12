@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/STDPage.dart';
 import 'package:flutter_application_1/screen/Search.dart';
@@ -352,7 +353,7 @@ class ConfirmPage extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => historystu()),
+                MaterialPageRoute(builder: (context) => NewHistoryStudent()),
               );
             },
           ),

@@ -46,9 +46,19 @@ class _LogoutPageState extends State<LogoutPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 0),
+            Image.asset(
+              "assets/images/logout2.png",
+              width: 130,
+              height: 130,
+            ),
+            SizedBox(height: 20),
             Text(
               'Do you want to log out ?',
-              style: TextStyle(fontSize: 20.0),
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             SizedBox(height: 20.0),
             ElevatedButton(

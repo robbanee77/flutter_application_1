@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 
 class Newnotifstudent extends StatelessWidget {
@@ -34,7 +35,7 @@ class Newnotifstudent extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => historystu()),
+                MaterialPageRoute(builder: (context) => NewHistoryStudent()),
               );
             },
           ),
@@ -90,6 +91,13 @@ class Newnotifstudent extends StatelessWidget {
                     }
 
                     final cancelDocuments = cancelSnapshot.data!.docs;
+
+                    // Check if both collections are empty
+                    if (confirmDocuments.isEmpty && cancelDocuments.isEmpty) {
+                      return Center(
+                        child: Text("ไม่มีการแจ้งเตือน"),
+                      );
+                    }
 
                     return ListView.builder(
                       itemCount:
