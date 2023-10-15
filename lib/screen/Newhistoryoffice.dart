@@ -20,39 +20,26 @@ class _HistoryState extends State<Newhistoryoffice> {
   bool showLine = false;
   List<Map<String, dynamic>> confirmData = [];
 
-  Future<void> getConfirmData() async {
-    try {
-      QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection('confirm').get();
-
-      confirmData.clear();
-
-      for (QueryDocumentSnapshot document in querySnapshot.docs) {
-        Map<String, dynamic> data = document.data() as Map<String, dynamic>;
-        confirmData.add(data);
-      }
-
-      setState(() {
-        displayText = 'Data from Firestore:\n';
-        for (var data in confirmData) {
-          displayText += ' ${data['code']}, ${data['name']}, ${data['data']}\n';
-        }
-        showLine = true;
-      });
-    } catch (e) {
-      print('เกิดข้อผิดพลาดในการดึงข้อมูล: $e');
+  @override
+  void initState() {
+    super.initState();
+    if (selectedIndex == 0) {
+      getData('confirm');
+    } else {
+      getData('cancel');
     }
   }
 
-  Future<void> getCancelData() async {
+  Future<void> getData(String collectionName) async {
     try {
       QuerySnapshot querySnapshot =
-          await FirebaseFirestore.instance.collection('cancel').get();
+          await FirebaseFirestore.instance.collection(collectionName).get();
 
       confirmData.clear();
 
       for (QueryDocumentSnapshot document in querySnapshot.docs) {
         Map<String, dynamic> data = document.data() as Map<String, dynamic>;
+        data['documentId'] = document.id;
         confirmData.add(data);
       }
 
@@ -73,12 +60,8 @@ class _HistoryState extends State<Newhistoryoffice> {
     return Scaffold(
       backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
-        title: Row(
-          children: [
-            Text('History'),
-          ],
-        ),
         backgroundColor: Color(0xFF5ca4a9),
+        title: Text('History'),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -113,68 +96,61 @@ class _HistoryState extends State<Newhistoryoffice> {
                   selectedIndex = index!;
                   if (selectedIndex == 0) {
                     showLine = false;
-                    getConfirmData();
+                    getData('confirm');
                   } else if (selectedIndex == 1) {
                     showLine = false;
-                    getCancelData(); // เรียกใช้งานเมื่อกด "Cancel"
+                    getData('cancel');
                   }
                 });
               },
             ),
-            SizedBox(height: 40),
-            SizedBox(
-              width: double.infinity,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 20),
-                child: Text(
-                  displayText,
-                  style: TextStyle(
-                    fontSize: 17,
-                    fontWeight: FontWeight.bold,
-                    color: Color(0xFF5ca4a9),
-                  ),
-                ),
-              ),
-            ),
-            if (showLine) SizedBox(height: 10),
+            SizedBox(height: 20),
             if (showLine)
-              Container(
-                width: 350,
-                height: 2,
-                color: Color(0xFF5ca4a9),
-              ),
-
-            // สร้าง ListView.builder เพื่อแสดงปุ่ม Edit โดยไม่แสดงข้อมูลอีกครั้ง
-            if (selectedIndex == 1) // ตรวจสอบว่าเลือก Cancel
-              Container(
-                height: 300, // ปรับความสูงตามที่คุณต้องการ
-                child: ListView.builder(
-                  itemCount: confirmData.length,
-                  itemBuilder: (context, index) {
-                    var data = confirmData[index];
-                    return ListTile(
-                      // ไม่แสดงข้อมูลในรายการ
-                      // เพิ่มปุ่ม Edit ที่นี่
-                      title: SizedBox.shrink(), // รายการว่าง
-                      trailing: IconButton(
-                        icon: Icon(Icons.edit),
-                        onPressed: () {
-                          // รีแเค็สชิ้นข้อมูลหรือกระทำอื่น ๆ เมื่อกดปุ่ม Edit
-                          // ในตัวอย่างนี้ไม่ได้ทำอะไรเพิ่มเติม
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => Newrequest()),
-                          );
-                        },
-                      ),
-                    );
-                  },
-                ),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: confirmData.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final data = confirmData[index];
+                  return Card(
+                    margin: EdgeInsets.all(8.0),
+                    child: ListTile(
+                      title: Text(
+                          '${data['code']}, ${data['name']}, ${data['data']}'),
+                      trailing: selectedIndex == 1
+                          ? ElevatedButton(
+                              onPressed: () {
+                                if (selectedIndex == 1) {
+                                  moveDataToBooking(data);
+                                }
+                              },
+                              style: ButtonStyle(
+                                backgroundColor:
+                                    MaterialStateProperty.all(Colors.red),
+                              ),
+                              child: Text("Edit",
+                                  style: TextStyle(color: Colors.white)),
+                            )
+                          : null,
+                    ),
+                  );
+                },
               ),
           ],
         ),
       ),
     );
+  }
+
+  Future<void> moveDataToBooking(Map<String, dynamic> data) async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('cancel')
+          .doc(data['documentId'])
+          .delete();
+      await FirebaseFirestore.instance.collection('booking').add(data);
+      getData('cancel');
+    } catch (e) {
+      print('เกิดข้อผิดพลาดในการย้ายข้อมูล: $e');
+    }
   }
 }

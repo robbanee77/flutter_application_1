@@ -114,7 +114,14 @@ class _NewHistoryStudentState extends State<NewHistoryStudent> {
                   final bookingDocs = snapshot.data?.docs;
 
                   if (bookingDocs == null || bookingDocs.isEmpty) {
-                    return Center(child: Text('No reservations'));
+                    return Center(
+                        child: Text(
+                      'No reservations.',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xFF5ca4a9)),
+                    ));
                   }
 
                   return ListView.builder(
@@ -131,7 +138,13 @@ class _NewHistoryStudentState extends State<NewHistoryStudent> {
                         margin:
                             EdgeInsets.symmetric(vertical: 10, horizontal: 20),
                         child: ListTile(
-                          title: Text('You have a course reservation.'),
+                          title: Text(
+                            'You have a course reservation.',
+                            style: TextStyle(
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.bold,
+                                color: Color(0xFF5ca4a9)),
+                          ),
                           subtitle: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [

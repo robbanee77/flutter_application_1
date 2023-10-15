@@ -58,6 +58,7 @@ class _LogoutPageState extends State<LogoutPage> {
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
+                color: Color(0xFF5ca4a9),
               ),
             ),
             SizedBox(height: 20.0),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/NewSetatus.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/Search.dart';
@@ -124,7 +125,8 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => status()),
+                          MaterialPageRoute(
+                              builder: (context) => StatusScreen()),
                         );
                         // Handle button 2 press
                       },
@@ -138,6 +140,35 @@ class _STPageState extends State<STPage> {
                           SizedBox(height: 8),
                           Text(
                             '           Status          ',
+                            style: TextStyle(fontSize: 20),
+                          ),
+                        ],
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Color(0xFF5ca4a9),
+                        // Set button 2 color to green
+                        padding: EdgeInsets.all(16),
+                      ),
+                    ),
+                    SizedBox(height: 16),
+                    ElevatedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => status()),
+                        );
+                        // Handle button 2 press
+                      },
+                      child: Column(
+                        children: [
+                          Image.asset(
+                            'assets/images/suggestion.png',
+                            width: 80,
+                            height: 80,
+                          ),
+                          SizedBox(height: 8),
+                          Text(
+                            '  Suggest subject  ',
                             style: TextStyle(fontSize: 20),
                           ),
                         ],

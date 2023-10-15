@@ -95,7 +95,13 @@ class Newnotifstudent extends StatelessWidget {
                     // Check if both collections are empty
                     if (confirmDocuments.isEmpty && cancelDocuments.isEmpty) {
                       return Center(
-                        child: Text("ไม่มีการแจ้งเตือน"),
+                        child: Text(
+                          "No notifications",
+                          style: TextStyle(
+                              fontSize: 18.0,
+                              fontWeight: FontWeight.bold,
+                              color: Color(0xFF5ca4a9)),
+                        ),
                       );
                     }
 
