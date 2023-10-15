@@ -125,8 +125,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => StatusScreen()),
+                          MaterialPageRoute(builder: (context) => Newstatus()),
                         );
                         // Handle button 2 press
                       },

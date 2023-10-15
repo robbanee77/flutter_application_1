@@ -1,13 +1,23 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-class StatusScreen extends StatefulWidget {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(MaterialApp(
+    home: Newstatus(),
+  ));
+}
+
+class Newstatus extends StatefulWidget {
   @override
   _StatusScreenState createState() => _StatusScreenState();
 }
 
-class _StatusScreenState extends State<StatusScreen> {
+class _StatusScreenState extends State<Newstatus> {
   List<String> programStatus = [];
+  int currentStep = 0;
 
   @override
   void initState() {
@@ -29,23 +39,9 @@ class _StatusScreenState extends State<StatusScreen> {
 
       final List<String> statuses = [];
 
-      for (var doc in bookingSnapshot.docs) {
-        // เราสมมติว่า "program" อยู่ในเขตข้อมูล "name"
-        final programName = doc.data()['name'];
-        statuses.add("$programName: The request has been sent");
-      }
-
-      for (var doc in confirmSnapshot.docs) {
-        // เราสมมติว่า "program" อยู่ในเขตข้อมูล "name"
-        final programName = doc.data()['name'];
-        statuses.add("$programName: Confirm/Cancel");
-      }
-
-      for (var doc in cancelSnapshot.docs) {
-        // เราสมมติว่า "program" อยู่ในเขตข้อมูล "name"
-        final programName = doc.data()['name'];
-        statuses.add("$programName: Confirm/Cancel");
-      }
+      statuses.add("1 The request has been sent");
+      statuses.add("2 InProgress");
+      statuses.add("3 Confirm/Cancel");
 
       setState(() {
         programStatus = statuses;
@@ -61,35 +57,51 @@ class _StatusScreenState extends State<StatusScreen> {
       appBar: AppBar(
         title: Text("Program Status"),
       ),
-      body: ListView(
-        scrollDirection: Axis.horizontal,
-        children: programStatus
-            .map((status) => Container(
-                  width: 250,
-                  margin: EdgeInsets.all(10),
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: status.contains("The request has been sent")
-                        ? Colors.green
-                        : Colors.blue,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Center(
-                    child: Text(
-                      status,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
+      body: programStatus.isNotEmpty
+          ? Stepper(
+              currentStep: currentStep,
+              onStepTapped: (step) {
+                setState(() {
+                  currentStep = step;
+                });
+              },
+              steps: programStatus
+                  .asMap()
+                  .entries
+                  .map(
+                    (entry) => Step(
+                      title: Text("Step ${entry.key}"),
+                      content: Container(
+                        width: double.infinity,
+                        margin: EdgeInsets.all(10),
+                        padding: EdgeInsets.all(16),
+                        decoration: BoxDecoration(
+                          color: entry.value
+                                  .contains("The request has been sent")
+                              ? Colors.green
+                              : entry.value.contains("InProgress")
+                                  ? Colors.blue
+                                  : Colors
+                                      .red, // Change color for Confirm/Cancel
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                        child: Center(
+                          child: Text(
+                            entry.value,
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                ))
-            .toList(),
-      ),
+                  )
+                  .toList(),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }
-
-void main() => runApp(MaterialApp(
-      home: StatusScreen(),
-    ));
