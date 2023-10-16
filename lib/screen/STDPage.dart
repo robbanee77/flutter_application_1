@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/Fourthyear.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/NewStatus.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
@@ -156,7 +157,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Newsuggest()),
+                          MaterialPageRoute(builder: (context) => fourthyear()),
                         );
                         // Handle button 2 press
                       },

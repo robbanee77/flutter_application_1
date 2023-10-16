@@ -15,7 +15,6 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
   void initState() {
     super.initState();
 
-    // เพิ่มข้อมูลของแต่ละขั้นตอนที่ต้องการ
     steps = [
       Step(
         title: Text('The request has been sent'),
@@ -29,12 +28,11 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
       ),
     ];
 
-    // ติดตามสถานะใน Cloud Firestore
-    _firestore
-        .collection("subjects")
-        .doc("CS101")
-        .snapshots()
-        .listen((snapshot) {
+    // Replace 'user.Id' with the actual user's ID that you want to track
+    final userId = 'your_user.id';
+
+    // Track status in Cloud Firestore
+    _firestore.collection("booking").doc(userId).snapshots().listen((snapshot) {
       if (snapshot.exists) {
         String status = snapshot.data()?['status'];
 
@@ -59,14 +57,14 @@ class _StatusUpdatePageState extends State<StatusUpdatePage> {
       }
     });
 
-    currentStep = 0; // ตั้งค่าขั้นตอนปัจจุบันให้เริ่มที่ 0
+    currentStep = 0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Status"),
+        title: Text("STATUS"),
       ),
       body: Stepper(
         currentStep: currentStep,

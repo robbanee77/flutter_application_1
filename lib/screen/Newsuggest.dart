@@ -1,73 +1,119 @@
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
+import 'package:flutter_application_1/screen/Newhistoryoffice.dart';
+import 'package:flutter_application_1/screen/Newhistorystudent.dart';
+import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 
-class Newsuggest extends StatefulWidget {
-  const Newsuggest({Key? key}) : super(key: key);
+class Newsuggest extends StatelessWidget {
+  final List<String> year1Data;
 
-  @override
-  State<Newsuggest> createState() => _NewsuggestState();
-}
-
-class _NewsuggestState extends State<Newsuggest> {
-  final FirebaseFirestore firestore = FirebaseFirestore.instance;
+  Newsuggest(this.year1Data);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFe6ebe0), // ตั้งค่าสีพื้นหลัง
       appBar: AppBar(
-        title: Text('ข้อมูลนักศึกษา'),
+        title: Row(
+          children: [
+            Image.asset(
+              'assets/images/pro.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            SizedBox(width: 8),
+            Text(' Course'),
+          ],
+        ),
+        backgroundColor: Color(0xFF5ca4a9), // ตั้งค่าสีแถบด้านบน
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/noti1.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Newnotifstudent()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/histo.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NewHistoryStudent()),
+              );
+            },
+          ),
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
+              );
+            },
+          ),
+        ],
       ),
-      body: FutureBuilder(
-        future: fetchDataYaer4(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return CircularProgressIndicator();
-          } else if (snapshot.hasError) {
-            return Text('เกิดข้อผิดพลาด: ${snapshot.error}');
-          } else {
-            final data = snapshot.data as QuerySnapshot;
-            final documents = data.docs;
-
-            return ListView.builder(
-              itemCount: documents.length,
-              itemBuilder: (context, index) {
-                final studentData =
-                    documents[index].data() as Map<String, dynamic>;
-                final code = studentData['Code'];
-                final course = studentData['Course'];
-                final credit = studentData['Credit'];
-                final program = studentData['Program'];
-
-                return ListTile(
-                  title: Text('Code: $code'),
-                  subtitle: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Course: $course'),
-                      Text('Credit: $credit'),
-                      Text('Program: $program'),
-                    ],
-                  ),
-                );
-              },
-            );
-          }
-        },
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text(
+              'Suggested',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            if (year1Data.isNotEmpty) ...{
+              Column(
+                children: year1Data.map((data) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white, // สีพื้นหลังของ Container
+                        borderRadius: BorderRadius.circular(10), // กำหนดรูปร่าง
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey, // สีเงา
+                            blurRadius: 5, // ขนาดขอบเงา
+                          ),
+                        ],
+                      ),
+                      padding: EdgeInsets.all(16),
+                      child: Text(
+                        data,
+                        style: TextStyle(
+                          fontSize: 18,
+                        ),
+                      ),
+                    ),
+                  );
+                }).toList(),
+              ),
+            }
+          ],
+        ),
       ),
     );
   }
-
-  Future<QuerySnapshot> fetchDataYaer4() {
-    return firestore
-        .collection('year4')
-        .where('Code', isGreaterThanOrEqualTo: '62')
-        .get();
-  }
-}
-
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(Newsuggest());
 }
