@@ -85,6 +85,7 @@ class _fourthyearState extends State<fourthyear> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            SizedBox(height: 18),
             ElevatedButton(
               onPressed: () {
                 getYear1Data().then((data) {
@@ -94,9 +95,13 @@ class _fourthyearState extends State<fourthyear> {
                   );
                 });
               },
-              child: Text('1st year student'),
-              style: ElevatedButton.styleFrom(primary: Color(0xFF5ca4a9)),
+              child: Text('1st year student', style: TextStyle(fontSize: 25)),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF5ca4a9),
+                padding: EdgeInsets.all(16),
+              ),
             ),
+            SizedBox(height: 18),
             ElevatedButton(
               onPressed: () {
                 getYear2Data().then((data) {
@@ -106,9 +111,13 @@ class _fourthyearState extends State<fourthyear> {
                   );
                 });
               },
-              child: Text('2nd year student'),
-              style: ElevatedButton.styleFrom(primary: Color(0xFF5ca4a9)),
+              child: Text('2nd year student', style: TextStyle(fontSize: 25)),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF5ca4a9),
+                padding: EdgeInsets.all(16),
+              ),
             ),
+            SizedBox(height: 18),
             ElevatedButton(
               onPressed: () {
                 getYear3Data().then((data) {
@@ -118,9 +127,13 @@ class _fourthyearState extends State<fourthyear> {
                   );
                 });
               },
-              child: Text('3rd year student'),
-              style: ElevatedButton.styleFrom(primary: Color(0xFF5ca4a9)),
+              child: Text('3rd year student', style: TextStyle(fontSize: 25)),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF5ca4a9),
+                padding: EdgeInsets.all(16),
+              ),
             ),
+            SizedBox(height: 18),
             ElevatedButton(
               onPressed: () {
                 getYear4Data().then((data) {
@@ -130,8 +143,11 @@ class _fourthyearState extends State<fourthyear> {
                   );
                 });
               },
-              child: Text('4th year student'),
-              style: ElevatedButton.styleFrom(primary: Color(0xFF5ca4a9)),
+              child: Text('4th year student', style: TextStyle(fontSize: 25)),
+              style: ElevatedButton.styleFrom(
+                primary: Color(0xFF5ca4a9),
+                padding: EdgeInsets.all(16),
+              ),
             ),
           ],
         ),

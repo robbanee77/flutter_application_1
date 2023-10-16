@@ -59,13 +59,25 @@ class Newnotifstudent extends StatelessWidget {
         children: [
           Padding(
             padding: EdgeInsets.all(20),
-            child: Text(
-              'Notifications', // ข้อความที่ต้องการแสดงด้านบนสุด
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: Color(0xFF5ca4a9),
-              ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Notifications',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5ca4a9),
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(width: 10), // กำหนดระยะห่างระหว่างข้อความกับรูปภาพ
+                Image.asset(
+                  'assets/images/noti4.png', // ตำแหน่งของไฟล์รูปภาพที่คุณต้องการใช้
+                  width: 30, // ปรับขนาดรูปภาพตามที่คุณต้องการ
+                  height: 30,
+                ),
+              ],
             ),
           ),
           Expanded(

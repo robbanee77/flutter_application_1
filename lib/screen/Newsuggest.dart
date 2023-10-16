@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
-import 'package:flutter_application_1/screen/Newhistoryoffice.dart';
+import 'package/flutter_application_1/screen/Newhistoryoffice.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 
@@ -77,11 +77,15 @@ class Newsuggest extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'Suggested',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
+              Padding(
+                padding: const EdgeInsets.all(30),
+                child: Text(
+                  'Suggested',
+                  style: TextStyle(
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5ca4a9),
+                  ),
                 ),
               ),
               if (year1Data.isNotEmpty) ...{

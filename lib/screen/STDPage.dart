@@ -4,6 +4,7 @@ import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/NewStatus.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
+import 'package:flutter_application_1/screen/Newstatus2.dart';
 import 'package:flutter_application_1/screen/Newsuggest.dart';
 import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/home.dart';
@@ -128,7 +129,7 @@ class _STPageState extends State<STPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => StatusUpdatePage()),
+                              builder: (context) => NewStatusStudent()),
                         );
                         // Handle button 2 press
                       },

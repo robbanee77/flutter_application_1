@@ -46,6 +46,7 @@ dependencies:
   cloud_firestore: ^4.9.1
   firebase_messaging: ^14.6.9
   status_stepper: ^1.0.0
+  timelines: ^0.1.0
 
 flutter_icons:
  android: true

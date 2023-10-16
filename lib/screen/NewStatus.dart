@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class StatusUpdatePage extends StatefulWidget {
+class NewStatusStudent extends StatefulWidget {
   @override
   _StatusUpdatePageState createState() => _StatusUpdatePageState();
 }
 
-class _StatusUpdatePageState extends State<StatusUpdatePage> {
+class _StatusUpdatePageState extends State<NewStatusStudent> {
   int currentStep = 0;
   List<Step> steps = [];
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
