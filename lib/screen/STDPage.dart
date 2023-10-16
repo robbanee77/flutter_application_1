@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
-import 'package:flutter_application_1/screen/NewSetatus.dart';
+import 'package:flutter_application_1/screen/NewStatus.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
+import 'package:flutter_application_1/screen/Newsuggest.dart';
 import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/home.dart';
 import 'package:flutter_application_1/screen/notistu.dart';
@@ -125,7 +126,8 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Newstatus()),
+                          MaterialPageRoute(
+                              builder: (context) => StatusUpdatePage()),
                         );
                         // Handle button 2 press
                       },
@@ -154,7 +156,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => status()),
+                          MaterialPageRoute(builder: (context) => Newsuggest()),
                         );
                         // Handle button 2 press
                       },
