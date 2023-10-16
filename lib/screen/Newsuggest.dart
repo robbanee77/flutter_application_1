@@ -12,7 +12,7 @@ class Newsuggest extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFFe6ebe0), // ตั้งค่าสีพื้นหลัง
+      backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
         title: Row(
           children: [
@@ -26,7 +26,7 @@ class Newsuggest extends StatelessWidget {
             Text(' Course'),
           ],
         ),
-        backgroundColor: Color(0xFF5ca4a9), // ตั้งค่าสีแถบด้านบน
+        backgroundColor: Color(0xFF5ca4a9),
         actions: [
           IconButton(
             icon: Image.asset(
@@ -73,45 +73,47 @@ class Newsuggest extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'Suggested',
-              style: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(
+                'Suggested',
+                style: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            if (year1Data.isNotEmpty) ...{
-              Column(
-                children: year1Data.map((data) {
-                  return Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white, // สีพื้นหลังของ Container
-                        borderRadius: BorderRadius.circular(10), // กำหนดรูปร่าง
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.grey, // สีเงา
-                            blurRadius: 5, // ขนาดขอบเงา
+              if (year1Data.isNotEmpty) ...{
+                Column(
+                  children: year1Data.map((data) {
+                    return Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(10),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey,
+                              blurRadius: 5,
+                            ),
+                          ],
+                        ),
+                        padding: EdgeInsets.all(16),
+                        child: Text(
+                          data,
+                          style: TextStyle(
+                            fontSize: 18,
                           ),
-                        ],
-                      ),
-                      padding: EdgeInsets.all(16),
-                      child: Text(
-                        data,
-                        style: TextStyle(
-                          fontSize: 18,
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
-              ),
-            }
-          ],
+                    );
+                  }).toList(),
+                ),
+              }
+            ],
+          ),
         ),
       ),
     );
