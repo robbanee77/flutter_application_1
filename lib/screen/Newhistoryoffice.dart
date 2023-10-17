@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/screen/Newrequest.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -67,6 +66,7 @@ class _HistoryState extends State<Newhistoryoffice> {
         title: Text('History'),
       ),
       body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
         child: Column(
           children: [
             Container(
@@ -109,16 +109,13 @@ class _HistoryState extends State<Newhistoryoffice> {
             ),
             SizedBox(height: 20),
             if (showLine)
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: confirmData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final data = confirmData[index];
+              Column(
+                children: confirmData.map((data) {
                   return Card(
                     margin: EdgeInsets.all(8.0),
                     child: ListTile(
                       title: Text(
-                          '${data['code']}, ${data['name']}, ${data['data']}'),
+                          '${data['code']}\n${data['name']}\n${data['data']}\n'),
                       trailing: selectedIndex == 1
                           ? ElevatedButton(
                               onPressed: () {
@@ -136,7 +133,7 @@ class _HistoryState extends State<Newhistoryoffice> {
                           : null,
                     ),
                   );
-                },
+                }).toList(),
               ),
           ],
         ),
