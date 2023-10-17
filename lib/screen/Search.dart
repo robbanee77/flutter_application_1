@@ -118,7 +118,7 @@ class _MyAppState extends State<Search> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Newnotifstudent()),
+                    MaterialPageRoute(builder: (context) => NewNotifstudent()),
                   );
                 },
               ),

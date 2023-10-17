@@ -59,7 +59,7 @@ class _NewHistoryStudentState extends State<NewHistoryStudent> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Newnotifstudent()),
+                MaterialPageRoute(builder: (context) => NewNotifstudent()),
               );
             },
           ),

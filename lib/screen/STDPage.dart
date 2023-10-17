@@ -51,7 +51,7 @@ class _STPageState extends State<STPage> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Newnotifstudent()),
+                MaterialPageRoute(builder: (context) => NewNotifstudent()),
               );
             },
           ),

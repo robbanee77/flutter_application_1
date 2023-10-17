@@ -5,7 +5,7 @@ import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/histostu.dart';
 
-class Newnotifstudent extends StatelessWidget {
+class NewNotifstudent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

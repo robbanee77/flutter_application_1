@@ -38,7 +38,7 @@ class Newsuggest extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Newnotifstudent()),
+                MaterialPageRoute(builder: (context) => NewNotifstudent()),
               );
             },
           ),

@@ -47,7 +47,7 @@ class _fourthyearState extends State<fourthyear> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Newnotifstudent()),
+                MaterialPageRoute(builder: (context) => NewNotifstudent()),
               );
             },
           ),
@@ -85,6 +85,30 @@ class _fourthyearState extends State<fourthyear> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Padding(
+              padding: EdgeInsets.all(10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(width: 10),
+                  Text(
+                    'SUGGEST',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(width: 10),
+                  Image.asset(
+                    'assets/images/noti4.png',
+                    width: 30,
+                    height: 30,
+                  ),
+                ],
+              ),
+            ),
             SizedBox(height: 18),
             ElevatedButton(
               onPressed: () {
