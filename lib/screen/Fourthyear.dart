@@ -89,11 +89,11 @@ class _fourthyearState extends State<fourthyear> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.all(5),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 10),
+                  SizedBox(width: 5),
                   Text(
                     'SUGGEST',
                     style: TextStyle(
@@ -104,11 +104,11 @@ class _fourthyearState extends State<fourthyear> {
                     textAlign: TextAlign.center,
                   ),
                   SizedBox(width: 10),
-                  Image.asset(
-                    'assets/images/noti4.png',
-                    width: 30,
-                    height: 30,
-                  ),
+                  // Image.asset(
+                  //   'assets/images/noti4.png',
+                  //   width: 30,
+                  //   height: 30,
+                  // ),
                 ],
               ),
             ),

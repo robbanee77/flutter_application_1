@@ -154,7 +154,7 @@ class _OfficerState extends State<OfficerState> {
 
                                 // Save user data to Firestore
                                 await FirebaseFirestore.instance
-                                    .collection('users')
+                                    .collection('Users1')
                                     .doc(user?.uid)
                                     .set({
                                   'email': user?.email,

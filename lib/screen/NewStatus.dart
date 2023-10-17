@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/NewHistoryStudent.dart';
-import 'package:flutter_application_1/screen/NewNotifStudent.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +21,7 @@ class NewStatusStudent extends StatefulWidget {
 class _NewStatusStudentState extends State<NewStatusStudent> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,8 +106,12 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection('booking')
+                      .where('email',
+                          isEqualTo: _auth.currentUser
+                              ?.email) // ตรวจสอบเฉพาะเอกเมลผู้ใช้ที่เข้าสู่ระบบ
                       .snapshots(),
                   builder: (context, bookingSnapshot) {
+                    // เช็คสถานะการเชื่อมต่อของข้อมูล
                     if (bookingSnapshot.connectionState ==
                         ConnectionState.waiting) {
                       return CircularProgressIndicator();
@@ -125,7 +129,7 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                             'Program': doc['data']['Program'].toString(),
                           });
                         }
-                        return buildStepWidget('Request', '', statusList);
+                        return buildStepWidget('In progress', '', statusList);
                       }
                     }
                     return Text('Status1: No data available');
@@ -134,8 +138,12 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection('confirm')
+                      .where('email',
+                          isEqualTo: _auth.currentUser
+                              ?.email) // ตรวจสอบเฉพาะเอกเมลผู้ใช้ที่เข้าสู่ระบบ
                       .snapshots(),
                   builder: (context, confirmSnapshot) {
+                    // เช็คสถานะการเชื่อมต่อของข้อมูล
                     if (confirmSnapshot.connectionState ==
                         ConnectionState.waiting) {
                       return CircularProgressIndicator();
@@ -162,8 +170,12 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                 StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
                       .collection('cancel')
+                      .where('email',
+                          isEqualTo: _auth.currentUser
+                              ?.email) // ตรวจสอบเฉพาะเอกเมลผู้ใช้ที่เข้าสู่ระบบ
                       .snapshots(),
                   builder: (context, cancelSnapshot) {
+                    // เช็คสถานะการเชื่อมต่อของข้อมูล
                     if (cancelSnapshot.connectionState ==
                         ConnectionState.waiting) {
                       return CircularProgressIndicator();
@@ -197,21 +209,33 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
 
   Widget buildStepWidget(
       String step, String stepText, List<Map<String, String>> statusList) {
+    Color circleColor;
+
+    // กำหนดสีของวงกลมตามค่าของ step
+    if (step == 'Request') {
+      circleColor = Colors.lightBlue; // สีฟ้าอ่อน
+    } else if (step == 'Confirm') {
+      circleColor = Color.fromARGB(255, 124, 181, 170); // สีฟ้าเข็ม
+    } else if (step == 'Cancel') {
+      circleColor = Colors.red; // สีแดง
+    } else {
+      circleColor = Color.fromARGB(255, 145, 145, 145); // สีเทาเข้มเสมอ
+    }
+
     return Card(
-      // ใส่ Card รอบข้อมูลของแต่ละ Status
-      margin: EdgeInsets.all(10), // ปรับระยะห่างขอบของ Card
+      margin: EdgeInsets.all(10),
       child: Padding(
-        padding: EdgeInsets.all(10), // ปรับระยะห่างของ Status Widget ภายใน Card
+        padding: EdgeInsets.all(10),
         child: Column(
           children: [
             Stack(
               children: [
                 Container(
-                  width: 50, // ความกว้างของวงกลม
-                  height: 50, // ความสูงของวงกลม
+                  width: 50,
+                  height: 50,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: step == 'Status2' ? Colors.black : Colors.grey,
+                    color: circleColor,
                   ),
                 ),
               ],
@@ -240,8 +264,7 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                           Text(
                             'Code: ${status['Code']}, Program: ${status['Program']}',
                           ),
-                          if (statusList.length > 1)
-                            Divider(), // เพิ่ม Divider เมื่อมีมากกว่า 1 รายการ
+                          if (statusList.length > 1) Divider(),
                         ],
                       ))
                   .toList(),
