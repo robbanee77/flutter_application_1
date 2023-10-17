@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class NewNotifstudent extends StatelessWidget {
@@ -89,41 +88,6 @@ class NewNotifstudent extends StatelessWidget {
                         return _buildDocumentBlock(
                             'Your information has been canceled.');
                       }
-                    },
-                  );
-                },
-              );
-
-              return StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance
-                    .collection('cancel') // Change to 'cancel' collection
-                    .where('email', isEqualTo: userEmail)
-                    .snapshots(),
-                builder: (context, cancelSnapshot) {
-                  if (cancelSnapshot.connectionState ==
-                      ConnectionState.waiting) {
-                    return CircularProgressIndicator();
-                  }
-
-                  final cancelDocuments = cancelSnapshot.data!.docs;
-
-                  if (cancelDocuments.isEmpty) {
-                    return Center(
-                      child: Text(
-                        "No cancel notifications",
-                        style: TextStyle(
-                            fontSize: 18.0,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF5ca4a9)),
-                      ),
-                    );
-                  }
-
-                  return ListView.builder(
-                    itemCount: cancelDocuments.length,
-                    itemBuilder: (context, index) {
-                      return _buildDocumentBlock(
-                          'Your information has been canceled.');
                     },
                   );
                 },
