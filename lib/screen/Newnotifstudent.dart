@@ -33,7 +33,7 @@ class NewNotifstudent extends StatelessWidget {
                 'Notifications',
                 style: TextStyle(
                   color: Color(0xFF5ca4a9),
-                  fontSize: 24,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                 ),
               ),

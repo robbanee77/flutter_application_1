@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/NewHistoryStudent.dart';
+import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -41,6 +42,20 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
         ),
         backgroundColor: Color(0xFF5ca4a9),
         actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/noti1.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => NewNotifstudent()),
+              );
+            },
+          ),
           IconButton(
             icon: Image.asset(
               'assets/images/histo.png',
