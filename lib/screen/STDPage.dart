@@ -1,10 +1,11 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/Fourthyear.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:flutter_application_1/screen/NewStatus.dart';
 import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
-import 'package:flutter_application_1/screen/Newstatus2.dart';
 import 'package:flutter_application_1/screen/Newsuggest.dart';
 import 'package:flutter_application_1/screen/Search.dart';
 import 'package:flutter_application_1/screen/home.dart';
@@ -21,6 +22,8 @@ class STPage extends StatefulWidget {
 }
 
 class _STPageState extends State<STPage> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

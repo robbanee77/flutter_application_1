@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/screen/Newrequest.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -15,6 +16,8 @@ class Newhistoryoffice extends StatefulWidget {
 }
 
 class _HistoryState extends State<Newhistoryoffice> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   int selectedIndex = 0;
   String displayText = '';
   bool showLine = false;

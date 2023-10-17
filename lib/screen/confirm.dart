@@ -14,6 +14,7 @@ import 'package:flutter_application_1/screen/login.dart';
 
 class ConfirmPage extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   Future<void> _showConfirmationDialog(
       BuildContext context, String userEmail) async {

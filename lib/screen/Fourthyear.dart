@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_application_1/screen/LogoutPage.dart';
@@ -13,6 +14,8 @@ class fourthyear extends StatefulWidget {
 }
 
 class _fourthyearState extends State<fourthyear> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<String> year1Data = [];
   List<String> year2Data = [];
   List<String> year3Data = [];

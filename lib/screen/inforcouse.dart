@@ -158,6 +158,8 @@ import 'package:flutter_application_1/screen/successfull.dart';
 // }
 
 class ResultDetailPage extends StatelessWidget {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final Map<String, dynamic> resultData;
 
   ResultDetailPage({required this.resultData});
