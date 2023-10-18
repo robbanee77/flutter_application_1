@@ -108,7 +108,7 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                   ),
                   SizedBox(width: 10),
                   Image.asset(
-                    'assets/images/noti4.png',
+                    'assets/images/sta1.png',
                     width: 30,
                     height: 30,
                   ),

@@ -139,7 +139,7 @@ class _STPageState extends State<STPage> {
                       child: Column(
                         children: [
                           Image.asset(
-                            'assets/images/stu.png',
+                            'assets/images/sta.png',
                             width: 80,
                             height: 80,
                           ),
