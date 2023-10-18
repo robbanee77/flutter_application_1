@@ -23,163 +23,187 @@ class _fourthyearState extends State<fourthyear> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:
-          Color(0xFFe6ebe0), // Updated background color to light green
-      appBar: AppBar(
-        title: Row(
-          children: [
-            Image.asset(
-              'assets/images/pro.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
+        backgroundColor:
+            Color(0xFFe6ebe0), // Updated background color to light green
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/pro.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              SizedBox(width: 8),
+              Text(' Course'),
+            ],
+          ),
+          backgroundColor: Color(0xFF5ca4a9),
+          actions: [
+            IconButton(
+              icon: Image.asset(
+                'assets/images/noti1.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewNotifstudent()),
+                );
+              },
             ),
-            SizedBox(width: 8),
-            Text(' Course'),
+            IconButton(
+              icon: Image.asset(
+                'assets/images/histo.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewHistoryStudent()),
+                );
+              },
+            ),
+            IconButton(
+              icon: Image.asset(
+                'assets/images/logout.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogoutPage()),
+                );
+              },
+            ),
           ],
         ),
-        backgroundColor: Color(0xFF5ca4a9),
-        actions: [
-          IconButton(
-            icon: Image.asset(
-              'assets/images/noti1.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NewNotifstudent()),
-              );
-            },
-          ),
-          IconButton(
-            icon: Image.asset(
-              'assets/images/histo.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => NewHistoryStudent()),
-              );
-            },
-          ),
-          IconButton(
-            icon: Image.asset(
-              'assets/images/logout.png',
-              width: 30,
-              height: 30,
-              fit: BoxFit.contain,
-            ),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LogoutPage()),
-              );
-            },
-          ),
-        ],
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.all(5),
-              child: Row(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.all(5),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(width: 5),
+                    Text(
+                      'SUGGEST SUBJECT',
+                      style: TextStyle(
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF5ca4a9),
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(width: 10),
+                  ],
+                ),
+              ),
+              SizedBox(height: 18),
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  SizedBox(width: 5),
-                  Text(
-                    'SUGGEST',
-                    style: TextStyle(
-                      fontSize: 35,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF5ca4a9),
+                  Container(
+                    width: MediaQuery.of(context).size.width *
+                        0.4, // รายละเอียดตรงนี้
+                    child: ElevatedButton(
+                      onPressed: () {
+                        getYear1Data().then((data) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Newsuggest(data)),
+                          );
+                        });
+                      },
+                      child: Text('1st year', style: TextStyle(fontSize: 25)),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF5ca4a9),
+                        padding: EdgeInsets.all(16),
+                      ),
                     ),
-                    textAlign: TextAlign.center,
                   ),
-                  SizedBox(width: 10),
-                  // Image.asset(
-                  //   'assets/images/noti4.png',
-                  //   width: 30,
-                  //   height: 30,
-                  // ),
+                  SizedBox(width: 10), // ระยะห่างระหว่างปุ่ม
+                  Container(
+                    width: MediaQuery.of(context).size.width *
+                        0.4, // รายละเอียดตรงนี้
+                    child: ElevatedButton(
+                      onPressed: () {
+                        getYear2Data().then((data) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Newsuggest(data)),
+                          );
+                        });
+                      },
+                      child: Text('2nd year', style: TextStyle(fontSize: 25)),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF5ca4a9),
+                        padding: EdgeInsets.all(16),
+                      ),
+                    ),
+                  ),
                 ],
               ),
-            ),
-            SizedBox(height: 18),
-            ElevatedButton(
-              onPressed: () {
-                getYear1Data().then((data) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Newsuggest(data)),
-                  );
-                });
-              },
-              child: Text('1st year student', style: TextStyle(fontSize: 25)),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF5ca4a9),
-                padding: EdgeInsets.all(16),
+              SizedBox(height: 18),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width *
+                        0.4, // รายละเอียดตรงนี้
+                    child: ElevatedButton(
+                      onPressed: () {
+                        getYear3Data().then((data) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Newsuggest(data)),
+                          );
+                        });
+                      },
+                      child: Text('3rd year', style: TextStyle(fontSize: 25)),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF5ca4a9),
+                        padding: EdgeInsets.all(16),
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 10), // ระยะห่างระหว่างปุ่ม
+                  Container(
+                    width: MediaQuery.of(context).size.width *
+                        0.4, // รายละเอียดตรงนี้
+                    child: ElevatedButton(
+                      onPressed: () {
+                        getYear4Data().then((data) {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => Newsuggest(data)),
+                          );
+                        });
+                      },
+                      child: Text('4th year', style: TextStyle(fontSize: 25)),
+                      style: ElevatedButton.styleFrom(
+                        primary: Color(0xFF5ca4a9),
+                        padding: EdgeInsets.all(16),
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ),
-            SizedBox(height: 18),
-            ElevatedButton(
-              onPressed: () {
-                getYear2Data().then((data) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Newsuggest(data)),
-                  );
-                });
-              },
-              child: Text('2nd year student', style: TextStyle(fontSize: 25)),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF5ca4a9),
-                padding: EdgeInsets.all(16),
-              ),
-            ),
-            SizedBox(height: 18),
-            ElevatedButton(
-              onPressed: () {
-                getYear3Data().then((data) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Newsuggest(data)),
-                  );
-                });
-              },
-              child: Text('3rd year student', style: TextStyle(fontSize: 25)),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF5ca4a9),
-                padding: EdgeInsets.all(16),
-              ),
-            ),
-            SizedBox(height: 18),
-            ElevatedButton(
-              onPressed: () {
-                getYear4Data().then((data) {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Newsuggest(data)),
-                  );
-                });
-              },
-              child: Text('4th year student', style: TextStyle(fontSize: 25)),
-              style: ElevatedButton.styleFrom(
-                primary: Color(0xFF5ca4a9),
-                padding: EdgeInsets.all(16),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+            ],
+          ),
+        ));
   }
 
   Future<List<String>> getYear1Data() async {

@@ -26,17 +26,28 @@ class NewNotifstudent extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(16),
-            child: Center(
-              child: Text(
-                'Notifications',
-                style: TextStyle(
-                  color: Color(0xFF5ca4a9),
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
+          SizedBox(width: 50),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment
+                  .center, // Center the text and image horizontally
+              children: [
+                Text(
+                  'NOTIFICATIONS',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFF5ca4a9),
+                  ),
                 ),
-              ),
+                SizedBox(width: 10), // Add spacing between text and image
+                Image.asset(
+                  'assets/images/noti4.png', // File path to your image
+                  width: 40, // Adjust image size as needed
+                  height: 40,
+                ),
+              ],
             ),
           ),
           Expanded(

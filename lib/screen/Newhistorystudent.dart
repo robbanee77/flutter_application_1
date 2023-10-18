@@ -106,14 +106,25 @@ class _NewHistoryStudentState extends State<NewHistoryStudent> {
           children: [
             Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Text(
-                'HISTORY',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 25,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFF5ca4a9),
-                ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment
+                    .center, // Center the text and image horizontally
+                children: [
+                  Text(
+                    'HISTORY',
+                    style: TextStyle(
+                      fontSize: 35,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF5ca4a9),
+                    ),
+                  ),
+                  SizedBox(width: 10), // Add spacing between text and image
+                  Image.asset(
+                    'assets/images/histo2.png', // File path to your image
+                    width: 40, // Adjust image size as needed
+                    height: 40,
+                  ),
+                ],
               ),
             ),
             Expanded(
