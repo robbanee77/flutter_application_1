@@ -90,10 +90,15 @@ class _fourthyearState extends State<fourthyear> {
             children: <Widget>[
               Padding(
                 padding: EdgeInsets.all(5),
-                child: Row(
+                child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(width: 5),
+                    Image.asset(
+                      "assets/images/suggestion1.png",
+                      width: 130,
+                      height: 130,
+                    ),
+                    SizedBox(height: 5),
                     Text(
                       'SUGGEST SUBJECT',
                       style: TextStyle(
@@ -103,7 +108,7 @@ class _fourthyearState extends State<fourthyear> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(width: 10),
+                    SizedBox(height: 10),
                   ],
                 ),
               ),
@@ -210,7 +215,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year1').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}, Program: ${document['Program']}, Course: ${document['Course']}, Credit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
     }).toList();
     return data;
   }
@@ -219,7 +224,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year2').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}, Program: ${document['Program']}, Course: ${document['Course']}, Credit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
     }).toList();
     return data;
   }
@@ -228,7 +233,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year3').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}, Program: ${document['Program']}, Course: ${document['Course']}, Credit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
     }).toList();
     return data;
   }
@@ -237,7 +242,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year4').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}, Program: ${document['Program']}, Course: ${document['Course']}, Credit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
     }).toList();
     return data;
   }

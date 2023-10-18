@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screen/LogoutPage.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -63,7 +64,23 @@ class _HistoryState extends State<Newhistoryoffice> {
       backgroundColor: Color(0xFFe6ebe0),
       appBar: AppBar(
         backgroundColor: Color(0xFF5ca4a9),
-        title: Text('History'),
+        title: Text('Course Reservation'),
+        actions: [
+          IconButton(
+            icon: Image.asset(
+              'assets/images/logout.png',
+              width: 30,
+              height: 30,
+              fit: BoxFit.contain,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => LogoutPage()),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
@@ -76,13 +93,18 @@ class _HistoryState extends State<Newhistoryoffice> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'History',
+                    'HISTORY',
                     style: TextStyle(
                       fontSize: 35,
                       fontWeight: FontWeight.bold,
                       color: Color(0xFF5ca4a9),
                     ),
-                    textAlign: TextAlign.center,
+                  ),
+                  SizedBox(width: 10), // Add spacing between text and image
+                  Image.asset(
+                    'assets/images/histo2.png', // File path to your image
+                    width: 40, // Adjust image size as needed
+                    height: 40,
                   ),
                 ],
               ),

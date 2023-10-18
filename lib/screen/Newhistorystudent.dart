@@ -64,7 +64,7 @@ class _NewHistoryStudentState extends State<NewHistoryStudent> {
                 fit: BoxFit.contain,
               ),
               SizedBox(width: 8),
-              Text('History'),
+              Text(' Course'),
             ],
           ),
         ),

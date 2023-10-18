@@ -24,6 +24,7 @@ class STPage extends StatefulWidget {
 class _STPageState extends State<STPage> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

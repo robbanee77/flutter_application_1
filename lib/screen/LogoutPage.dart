@@ -39,7 +39,7 @@ class _LogoutPageState extends State<LogoutPage> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('  Log out'),
+            Text('Course Reservation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
@@ -51,7 +51,7 @@ class _LogoutPageState extends State<LogoutPage> {
           children: <Widget>[
             SizedBox(height: 0),
             Image.asset(
-              "assets/images/logout2.png",
+              "assets/images/logout3.png",
               width: 130,
               height: 130,
             ),
