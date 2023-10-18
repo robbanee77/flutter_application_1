@@ -42,7 +42,7 @@ class _MyWidgetState extends State<MyWidget> {
               fit: BoxFit.contain,
             ),
             SizedBox(width: 8),
-            Text('Course Reservationss'),
+            Text('Course Reservation'),
           ],
         ),
         backgroundColor: Color(0xFF5ca4a9),
