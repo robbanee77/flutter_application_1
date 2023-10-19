@@ -147,7 +147,7 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                         return buildStepWidget('In progress', '', statusList);
                       }
                     }
-                    return Text('Status1: No data available');
+                    return Text('In progress: No data available');
                   },
                 ),
                 StreamBuilder<QuerySnapshot>(
@@ -179,7 +179,7 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                         return buildStepWidget('Confirm', '', statusList);
                       }
                     }
-                    return Text('Status2: No data available');
+                    return Text('Confirm: No data available');
                   },
                 ),
                 StreamBuilder<QuerySnapshot>(
@@ -211,7 +211,7 @@ class _NewStatusStudentState extends State<NewStatusStudent> {
                         return buildStepWidget('Cancel', '', statusList);
                       }
                     }
-                    return Text('Status3: No data available');
+                    return Text('Cancel: No data available');
                   },
                 ),
               ],

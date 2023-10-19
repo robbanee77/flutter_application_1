@@ -12,6 +12,7 @@ void main() {
 class Newrequest extends StatelessWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -86,7 +87,7 @@ class _MyWidgetState extends State<MyWidget> {
             );
           } else if (snapshot.hasError) {
             return Center(
-              child: Text('เกิดข้อผิดพลาด: ${snapshot.error}'),
+              child: Text('Error: ${snapshot.error}'),
             );
           } else if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
             return Center(
