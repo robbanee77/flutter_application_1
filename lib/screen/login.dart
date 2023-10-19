@@ -59,10 +59,10 @@ class _LoginActivityState extends State<LoginActivity> {
 
       if (user.role == 'Officer') {
         print('Logged in as Officer');
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => Depart()),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(builder: (context) => Depart()),
+        // );
       } else if (user.role == 'Students') {
         print('Logged in as Student');
         Navigator.push(
