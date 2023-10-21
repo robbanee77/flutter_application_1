@@ -257,14 +257,14 @@ import 'package:flutter_application_1/screen/Newhistorystudent.dart';
 import 'package:flutter_application_1/screen/Newnotifstudent.dart';
 import 'package:flutter_application_1/screen/Newsuggest.dart';
 
-class fourthyear extends StatefulWidget {
-  fourthyear({Key? key}) : super(key: key);
+class Fourthyear extends StatefulWidget {
+  Fourthyear({Key? key}) : super(key: key);
 
   @override
   _fourthyearState createState() => _fourthyearState();
 }
 
-class _fourthyearState extends State<fourthyear> {
+class _fourthyearState extends State<Fourthyear> {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   List<String> year1Data = [];

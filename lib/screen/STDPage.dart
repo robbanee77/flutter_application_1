@@ -162,7 +162,7 @@ class _STPageState extends State<STPage> {
                       onPressed: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => fourthyear()),
+                          MaterialPageRoute(builder: (context) => Fourthyear()),
                         );
                         // Handle button 2 press
                       },
