@@ -216,7 +216,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year1').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}";
     }).toList();
     return data;
   }
@@ -225,7 +225,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year2').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}";
     }).toList();
     return data;
   }
@@ -234,7 +234,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year3').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}";
     }).toList();
     return data;
   }
@@ -243,7 +243,7 @@ class _fourthyearState extends State<fourthyear> {
     QuerySnapshot querySnapshot =
         await FirebaseFirestore.instance.collection('year4').get();
     List<String> data = querySnapshot.docs.map((document) {
-      return "Code: ${document['Code']}\nProgram: ${document['Program']}\nCourse: ${document['Course']}\nCredit: ${document['Credit']}";
+      return "Code: ${document['Code']}\nProgram: ${document['Program']}";
     }).toList();
     return data;
   }

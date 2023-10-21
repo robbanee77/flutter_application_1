@@ -20,6 +20,7 @@ void main() async {
 class Search extends StatefulWidget {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+
   @override
   State<Search> createState() => _MyAppState();
 }
@@ -42,31 +43,75 @@ class _MyAppState extends State<Search> {
 
   searchResultList() {
     var showResults = [];
+    var searchResults = [];
+
     if (_searchController.text != "") {
-      for (var clientSnapshot in _allResults) {
-        var name = clientSnapshot['Code'].toString().toLowerCase();
-        if (name.contains(_searchController.text.toLowerCase())) {
-          showResults.add(clientSnapshot);
+      for (var subjectSnapshot in _allResults) {
+        var code = subjectSnapshot['Code'].toString().toLowerCase();
+        if (code.contains(_searchController.text.toLowerCase())) {
+          searchResults.add(subjectSnapshot);
         }
       }
     } else {
-      showResults = List.from(_allResults);
+      searchResults = List.from(_allResults);
     }
+
+    // รายการรหัสวิชาที่ต้องการแสดงเป็น 6 ลำดับแรก
+    var subjectsToShow = [
+      "IT2301-317",
+      "IT2301-204",
+      "DS2303-305",
+      "DS2303-303",
+      "RD2303-301",
+      "RD2303-302",
+    ];
+
+    for (var code in subjectsToShow) {
+      var subject = searchResults.firstWhere(
+        (subjectSnapshot) => subjectSnapshot['Code'] == code,
+        orElse: () => null,
+      );
+      if (subject != null) {
+        showResults.add(subject);
+      }
+    }
+
+    // เพิ่มวิชาอื่น ๆ ที่ไม่ตรงกับรหัสที่ระบุไว้
+    for (var subjectSnapshot in searchResults) {
+      var code = subjectSnapshot['Code'];
+      if (!subjectsToShow.contains(code)) {
+        showResults.add(subjectSnapshot);
+      }
+    }
+
     setState(() {
       _resultList = showResults;
     });
   }
 
   getClientStream() async {
-    var data = await FirebaseFirestore.instance
-        .collection('Subjects')
-        .orderBy('Code')
-        .get();
+    final user = widget._auth.currentUser; // ดึงข้อมูลผู้ใช้ปัจจุบัน
+    if (user != null) {
+      // ตรวจสอบว่าผู้ใช้ล็อกอินอยู่หรือไม่
+      final userSnapshot =
+          await widget._firestore.collection('Users1').doc(user.uid).get();
+      if (userSnapshot.exists) {
+        final userCodes = userSnapshot['codes'];
+        if (userCodes.startsWith('62')) {
+          // ตรวจสอบว่ารหัสผ่านของผู้ใช้ขึ้นต้นด้วย 62
+          var data = await widget._firestore
+              .collection('Subjects')
+              .orderBy('Code')
+              .get();
 
-    setState(() {
-      _allResults = data.docs;
-    });
-    searchResultList();
+          setState(() {
+            _allResults = data.docs;
+          });
+
+          searchResultList();
+        }
+      }
+    }
   }
 
   @override
@@ -90,111 +135,113 @@ class _MyAppState extends State<Search> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WillPopScope(
-        onWillPop: () async {
-          return true;
-        },
-        child: Scaffold(
-          backgroundColor: Color(0xFFe6ebe0),
-          appBar: AppBar(
-            title: Row(
-              children: [
-                Image.asset(
-                  'assets/images/pro.png',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-                SizedBox(width: 8),
-                Text('Course '),
-              ],
+      home: Scaffold(
+        backgroundColor: Color(0xFFe6ebe0),
+        appBar: AppBar(
+          title: Row(
+            children: [
+              Image.asset(
+                'assets/images/pro.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              SizedBox(width: 8),
+              Text('Course '),
+            ],
+          ),
+          backgroundColor: Color(0xFF5ca4a9),
+          actions: [
+            IconButton(
+              icon: Image.asset(
+                'assets/images/noti1.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewNotifstudent()),
+                );
+              },
             ),
-            backgroundColor: Color(0xFF5ca4a9),
-            actions: [
-              IconButton(
-                icon: Image.asset(
-                  'assets/images/noti1.png',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => NewNotifstudent()),
-                  );
-                },
+            IconButton(
+              icon: Image.asset(
+                'assets/images/histo.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
               ),
-              IconButton(
-                icon: Image.asset(
-                  'assets/images/histo.png',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => NewHistoryStudent()),
-                  );
-                },
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => NewHistoryStudent()),
+                );
+              },
+            ),
+            IconButton(
+              icon: Image.asset(
+                'assets/images/logout.png',
+                width: 30,
+                height: 30,
+                fit: BoxFit.contain,
               ),
-              IconButton(
-                icon: Image.asset(
-                  'assets/images/logout.png',
-                  width: 30,
-                  height: 30,
-                  fit: BoxFit.contain,
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => LogoutPage()),
-                  );
-                },
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LogoutPage()),
+                );
+              },
+            ),
+          ],
+        ),
+        body: CustomScrollView(
+          slivers: <Widget>[
+            SliverToBoxAdapter(
+              child: CupertinoSearchTextField(
+                controller: _searchController,
               ),
-            ],
-          ),
-          body: CustomScrollView(
-            slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: SizedBox(height: 10),
+            ),
+            SliverToBoxAdapter(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 20),
+                  Text(
+                    'คำแนะนำวิชาอื่น ๆ',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-              SliverToBoxAdapter(
-                child: CupertinoSearchTextField(
-                  controller: _searchController,
-                ),
-              ),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    // ใช้ .data() เพื่อแปลง _JsonQueryDocumentSnapshot เป็น Map
-                    Map<String, dynamic> resultData =
-                        _resultList[index].data() as Map<String, dynamic>;
-                    return ListTile(
-                      title: Text(resultData['Code']),
-                      subtitle: Text(resultData['Program']),
-                      onTap: () {
-                        // เมื่อคลิกที่ ListTile ในรายการผลลัพธ์
-                        // ให้เรียกไปยังหน้ารายละเอียด และส่งข้อมูลที่เลือกไปด้วย
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => ResultDetailPage(
-                              resultData:
-                                  resultData, // ส่งข้อมูลผลลัพธ์ที่ถูกเลือก
-                            ),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate(
+                (BuildContext context, int index) {
+                  Map<String, dynamic> resultData =
+                      _resultList[index].data() as Map<String, dynamic>;
+                  return ListTile(
+                    title: Text(resultData['Code']),
+                    subtitle: Text(resultData['Program']),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResultDetailPage(
+                            resultData: resultData,
                           ),
-                        );
-                      },
-                    );
-                  },
-                  childCount: _resultList.length,
-                ),
+                        ),
+                      );
+                    },
+                  );
+                },
+                childCount: _resultList.length,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
