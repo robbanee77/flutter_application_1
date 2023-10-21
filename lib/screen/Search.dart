@@ -73,6 +73,16 @@ class _MyAppState extends State<Search> {
             "IT2301-301",
             "IT2301-305",
             "IT2301-306",
+            "DS2303-301",
+            "DS2303-302",
+            "DS2303-303",
+            "DS2303-304",
+            "DS2303-305",
+            "RD2303-301",
+            "RD2303-302",
+            "RD2303-303",
+            "RD2303-304",
+            "RD2303-305",
           ];
         } else if (userCodes.startsWith('64')) {
           subjectsToShow = [
@@ -87,6 +97,16 @@ class _MyAppState extends State<Search> {
             "IT2301-314",
             "IT2301-316",
             "IT2301-318",
+            "DS2303-306",
+            "DS2303-307",
+            "DS2303-308",
+            "DS2303-309",
+            "DS2303-310",
+            "RD2303-306",
+            "RD2303-307",
+            "RD2303-308",
+            "RD2303-309",
+            "RD2303-310",
           ];
         } else if (userCodes.startsWith('63')) {
           subjectsToShow = [
@@ -98,6 +118,16 @@ class _MyAppState extends State<Search> {
             "IT2301-321",
             "IT2301-323",
             "IT2301-401",
+            "DS2303-311",
+            "DS2303-312",
+            "DS2303-313",
+            "DS2303-314",
+            "DS2303-315",
+            "RD2303-311",
+            "RD2303-312",
+            "RD2303-313",
+            "RD2303-314",
+            "RD2303-315",
           ];
         } else if (userCodes.startsWith('62')) {
           subjectsToShow = [
@@ -107,6 +137,16 @@ class _MyAppState extends State<Search> {
             "IT2301-320",
             "IT2301-322",
             "IT2301-402",
+            "DS2303-316",
+            "DS2303-317",
+            "DS2303-318",
+            "DS2303-319",
+            "DS2303-320",
+            "RD2303-316",
+            "RD2303-317",
+            "RD2303-318",
+            "RD2303-319",
+            "RD2303-320",
           ];
         }
 
