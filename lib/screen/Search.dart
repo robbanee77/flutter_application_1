@@ -314,20 +314,29 @@ class _MyAppState extends State<Search> {
                 (BuildContext context, int index) {
                   Map<String, dynamic> resultData =
                       _resultList[index].data() as Map<String, dynamic>;
-                  return ListTile(
-                    title: Text(resultData['Code']),
-                    subtitle: Text(resultData['Program']),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ResultDetailPage(
-                            resultData:
-                                resultData, // ส่งข้อมูลผลลัพธ์ที่ถูกเลือก
-                          ),
-                        ),
-                      );
-                    },
+                  return Column(
+                    children: <Widget>[
+                      ListTile(
+                        title: Text(resultData['Code']),
+                        subtitle: Text(resultData['Program']),
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => ResultDetailPage(
+                                resultData: resultData,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      Container(
+                        color: Colors.grey, // สีของเส้น
+                        height: 1.0, // ความสูงของเส้น
+                        margin: EdgeInsets.symmetric(
+                            horizontal: 16.0), // ขอบซ้ายและขวา
+                      ),
+                    ],
                   );
                 },
                 childCount: _resultList.length,
