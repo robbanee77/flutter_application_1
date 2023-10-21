@@ -41,7 +41,7 @@ class _MyAppState extends State<Search> {
     searchResultList();
   }
 
-  searchResultList() {
+  searchResultList() async {
     var showResults = [];
     var searchResults = [];
 
@@ -56,31 +56,69 @@ class _MyAppState extends State<Search> {
       searchResults = List.from(_allResults);
     }
 
-    // รายการรหัสวิชาที่ต้องการแสดงเป็น 6 ลำดับแรก
-    var subjectsToShow = [
-      "IT2301-317",
-      "IT2301-204",
-      "DS2303-305",
-      "DS2303-303",
-      "RD2303-301",
-      "RD2303-302",
-    ];
+    final user = widget._auth.currentUser;
+    if (user != null) {
+      final userSnapshot =
+          await widget._firestore.collection('Users1').doc(user.uid).get();
+      if (userSnapshot.exists) {
+        final userCodes = userSnapshot['codes'];
+        var subjectsToShow = [];
 
-    for (var code in subjectsToShow) {
-      var subject = searchResults.firstWhere(
-        (subjectSnapshot) => subjectSnapshot['Code'] == code,
-        orElse: () => null,
-      );
-      if (subject != null) {
-        showResults.add(subject);
-      }
-    }
+        if (userCodes.startsWith('65')) {
+          subjectsToShow = [
+            "IT2301-103",
+            "IT2301-201",
+            "DS2303-335",
+            "DS2303-334",
+            "RD2303-349",
+            "RD2303-351",
+          ];
+        } else if (userCodes.startsWith('64')) {
+          subjectsToShow = [
+            "IT2301-301",
+            "IT2301-303",
+            "DS2303-332",
+            "DS2303-331",
+            "RD2303-325",
+            "RD2303-327",
+          ];
+        } else if (userCodes.startsWith('63')) {
+          subjectsToShow = [
+            "IT2301-311",
+            "IT2301-313",
+            "DS2303-329",
+            "DS2303-327",
+            "RD2303-310",
+            "RD2303-313",
+          ];
+        } else if (userCodes.startsWith('62')) {
+          subjectsToShow = [
+            "IT2301-317",
+            "IT2301-204",
+            "DS2303-305",
+            "DS2303-303",
+            "RD2303-301",
+            "RD2303-302",
+          ];
+        }
 
-    // เพิ่มวิชาอื่น ๆ ที่ไม่ตรงกับรหัสที่ระบุไว้
-    for (var subjectSnapshot in searchResults) {
-      var code = subjectSnapshot['Code'];
-      if (!subjectsToShow.contains(code)) {
-        showResults.add(subjectSnapshot);
+        for (var code in subjectsToShow) {
+          var subject = searchResults.firstWhere(
+            (subjectSnapshot) => subjectSnapshot['Code'] == code,
+            orElse: () => null,
+          );
+          if (subject != null) {
+            showResults.add(subject);
+          }
+        }
+
+        // เพิ่มวิชาอื่น ๆ ที่ไม่ตรงกับรหัสที่ระบุไว้
+        for (var subjectSnapshot in searchResults) {
+          var code = subjectSnapshot['Code'];
+          if (!subjectsToShow.contains(code)) {
+            showResults.add(subjectSnapshot);
+          }
+        }
       }
     }
 
@@ -90,15 +128,16 @@ class _MyAppState extends State<Search> {
   }
 
   getClientStream() async {
-    final user = widget._auth.currentUser; // ดึงข้อมูลผู้ใช้ปัจจุบัน
+    final user = widget._auth.currentUser;
     if (user != null) {
-      // ตรวจสอบว่าผู้ใช้ล็อกอินอยู่หรือไม่
       final userSnapshot =
           await widget._firestore.collection('Users1').doc(user.uid).get();
       if (userSnapshot.exists) {
         final userCodes = userSnapshot['codes'];
-        if (userCodes.startsWith('62')) {
-          // ตรวจสอบว่ารหัสผ่านของผู้ใช้ขึ้นต้นด้วย 62
+        if (userCodes.startsWith('65') ||
+            userCodes.startsWith('64') ||
+            userCodes.startsWith('63') ||
+            userCodes.startsWith('62')) {
           var data = await widget._firestore
               .collection('Subjects')
               .orderBy('Code')
@@ -209,7 +248,7 @@ class _MyAppState extends State<Search> {
                 children: <Widget>[
                   SizedBox(height: 20),
                   Text(
-                    'คำแนะนำวิชาอื่น ๆ',
+                    'Recommended subjects for you',
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.bold,
@@ -231,7 +270,8 @@ class _MyAppState extends State<Search> {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ResultDetailPage(
-                            resultData: resultData,
+                            resultData:
+                                resultData, // ส่งข้อมูลผลลัพธ์ที่ถูกเลือก
                           ),
                         ),
                       );
