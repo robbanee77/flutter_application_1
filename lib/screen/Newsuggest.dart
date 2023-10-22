@@ -133,18 +133,27 @@ class Newsuggest extends StatelessWidget {
                               ),
                             ),
                             ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => ResultDetailPage(
-                                      resultData: resultData,
+                                onPressed: () {
+                                  Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ResultDetailPage(
+                                        resultData: resultData,
+                                      ),
                                     ),
+                                  );
+                                },
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          Color(0xFF5ca4a9)),
+                                ),
+                                child: Text(
+                                  'View Details',
+                                  style: TextStyle(
+                                    color: Colors.white,
                                   ),
-                                );
-                              },
-                              child: Text('View Details'),
-                            ),
+                                )),
                           ],
                         ),
                       ),
