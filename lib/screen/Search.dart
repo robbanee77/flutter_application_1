@@ -204,6 +204,18 @@ class _MyAppState extends State<Search> {
 
   @override
   Widget build(BuildContext context) {
+    // List<String> userYear = ["1st year", "2nd year", "2nd year", "4th year"];
+    // // สร้างตัวแปรเพื่อเก็บข้อความปีการศึกษา
+    // String userCodes = "";
+    // if (userCodes.startsWith('65')) {
+    //   userYear = "1st year" as List<String>;
+    // } else if (userCodes.startsWith('64')) {
+    //   userYear = "2nd year" as List<String>;
+    // } else if (userCodes.startsWith('63')) {
+    //   userYear = "2nd year" as List<String>;
+    // } else if (userCodes.startsWith('62')) {
+    //   userYear = "4th year" as List<String>;
+    // }
     return MaterialApp(
       title: 'Course',
       debugShowCheckedModeBanner: false,
@@ -286,7 +298,7 @@ class _MyAppState extends State<Search> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
                     child: Text(
-                      '15 recommended subjects for you',
+                      'This is 15 recommended subjects for you',
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
