@@ -172,7 +172,7 @@ class ConfirmPage extends StatelessWidget {
                       context, _auth.currentUser?.email ?? '');
                 },
                 child: Text(
-                  'Confirm booking',
+                  'Confirm reserve',
                   style: TextStyle(
                     fontSize: 20,
                   ),
